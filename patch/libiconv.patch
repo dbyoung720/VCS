@@ -1,0 +1,133 @@
+ CMakeLists.txt                             |  1 +
+ include/iconv.h.build.in                   | 24 +++++++++---------------
+ libcharset/include/localcharset.h.build.in |  9 +--------
+ 3 files changed, 11 insertions(+), 23 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index cdded4a..ecc9f14 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -99,6 +99,7 @@ endif()
+ # libiconv
+ set ( SRC_LIBICONV
+   lib/iconv.c
++  ${SRC_LIBCHARSET}
+ )
+ 
+ add_library ( iconv ${SRC_LIBICONV} )
+diff --git a/include/iconv.h.build.in b/include/iconv.h.build.in
+index ae50ba3..6b51759 100644
+--- a/include/iconv.h.build.in
++++ b/include/iconv.h.build.in
+@@ -23,17 +23,11 @@
+ 
+ #define _LIBICONV_VERSION 0x010E    /* version number: (major<<8) + minor */
+ 
+-#if @HAVE_VISIBILITY@ && BUILDING_LIBICONV
+-#define LIBICONV_DLL_EXPORTED __attribute__((__visibility__("default")))
+-#else
+-#define LIBICONV_DLL_EXPORTED
+-#endif
+-
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+ 
+-extern LIBICONV_DLL_EXPORTED @DLL_VARIABLE@ int _libiconv_version; /* Likewise */
++extern  @DLL_VARIABLE@ int _libiconv_version; /* Likewise */
+ 
+ #ifdef __cplusplus
+ }
+@@ -86,7 +80,7 @@ extern "C" {
+ #ifndef LIBICONV_PLUG
+ #define iconv_open libiconv_open
+ #endif
+-extern LIBICONV_DLL_EXPORTED iconv_t iconv_open (const char* tocode, const char* fromcode);
++extern  iconv_t iconv_open (const char* tocode, const char* fromcode);
+ 
+ /* Converts, using conversion descriptor ‘cd’, at most ‘*inbytesleft’ bytes
+    starting at ‘*inbuf’, writing at most ‘*outbytesleft’ bytes starting at
+@@ -96,13 +90,13 @@ extern LIBICONV_DLL_EXPORTED iconv_t iconv_open (const char* tocode, const char*
+ #ifndef LIBICONV_PLUG
+ #define iconv libiconv
+ #endif
+-extern LIBICONV_DLL_EXPORTED size_t iconv (iconv_t cd, @ICONV_CONST@ char* * inbuf, size_t *inbytesleft, char* * outbuf, size_t *outbytesleft);
++extern  size_t iconv (iconv_t cd, @ICONV_CONST@ char* * inbuf, size_t *inbytesleft, char* * outbuf, size_t *outbytesleft);
+ 
+ /* Frees resources allocated for conversion descriptor ‘cd’. */
+ #ifndef LIBICONV_PLUG
+ #define iconv_close libiconv_close
+ #endif
+-extern LIBICONV_DLL_EXPORTED int iconv_close (iconv_t cd);
++extern  int iconv_close (iconv_t cd);
+ 
+ 
+ #ifdef __cplusplus
+@@ -144,12 +138,12 @@ typedef struct {
+    encoding ‘tocode’ into preallocated memory. Returns an error indicator
+    (0 or -1 with errno set). */
+ #define iconv_open_into libiconv_open_into
+-extern LIBICONV_DLL_EXPORTED int iconv_open_into (const char* tocode, const char* fromcode,
++extern  int iconv_open_into (const char* tocode, const char* fromcode,
+                             iconv_allocation_t* resultp);
+ 
+ /* Control of attributes. */
+ #define iconvctl libiconvctl
+-extern LIBICONV_DLL_EXPORTED int iconvctl (iconv_t cd, int request, void* argument);
++extern  int iconvctl (iconv_t cd, int request, void* argument);
+ 
+ /* Hook performed after every successful conversion of a Unicode character. */
+ typedef void (*iconv_unicode_char_hook) (unsigned int uc, void* data);
+@@ -229,14 +223,14 @@ struct iconv_fallbacks {
+ 
+ /* Listing of locale independent encodings. */
+ #define iconvlist libiconvlist
+-extern LIBICONV_DLL_EXPORTED void iconvlist (int (*do_one) (unsigned int namescount,
++extern  void iconvlist (int (*do_one) (unsigned int namescount,
+                                       const char * const * names,
+                                       void* data),
+                        void* data);
+ 
+ /* Canonicalize an encoding name.
+    The result is either a canonical encoding name, or name itself. */
+-extern LIBICONV_DLL_EXPORTED const char * iconv_canonicalize (const char * name);
++extern  const char * iconv_canonicalize (const char * name);
+ 
+ /* Support for relocatable packages.  */
+ 
+@@ -245,7 +239,7 @@ extern LIBICONV_DLL_EXPORTED const char * iconv_canonicalize (const char * name)
+    by the corresponding pathname with the current prefix instead.  Both
+    prefixes should be directory names without trailing slash (i.e. use ""
+    instead of "/").  */
+-extern LIBICONV_DLL_EXPORTED void libiconv_set_relocation_prefix (const char *orig_prefix,
++extern  void libiconv_set_relocation_prefix (const char *orig_prefix,
+                                             const char *curr_prefix);
+ 
+ #ifdef __cplusplus
+diff --git a/libcharset/include/localcharset.h.build.in b/libcharset/include/localcharset.h.build.in
+index c691359..24fa051 100644
+--- a/libcharset/include/localcharset.h.build.in
++++ b/libcharset/include/localcharset.h.build.in
+@@ -20,13 +20,6 @@
+ #ifndef _LOCALCHARSET_H
+ #define _LOCALCHARSET_H
+ 
+-#if @HAVE_VISIBILITY@ && BUILDING_LIBCHARSET
+-#define LIBCHARSET_DLL_EXPORTED __attribute__((__visibility__("default")))
+-#else
+-#define LIBCHARSET_DLL_EXPORTED
+-#endif
+-
+-
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+@@ -37,7 +30,7 @@ extern "C" {
+    The result must not be freed; it is statically allocated.
+    If the canonical name cannot be determined, the result is a non-canonical
+    name.  */
+-extern LIBCHARSET_DLL_EXPORTED const char * locale_charset (void);
++extern  const char * locale_charset (void);
+ 
+ 
+ #ifdef __cplusplus

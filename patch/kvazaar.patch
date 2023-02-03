@@ -1,0 +1,148 @@
+ build/kvazaar_cli/kvazaar_cli.vcxproj     | 15 ++++++++++-----
+ build/kvazaar_lib/kvazaar_lib.vcxproj     | 13 +++++++------
+ build/kvazaar_tests/kvazaar_tests.vcxproj | 13 ++++++++-----
+ 3 files changed, 25 insertions(+), 16 deletions(-)
+
+diff --git a/build/kvazaar_cli/kvazaar_cli.vcxproj b/build/kvazaar_cli/kvazaar_cli.vcxproj
+index 75ab5c03..968cfe4b 100644
+--- a/build/kvazaar_cli/kvazaar_cli.vcxproj
++++ b/build/kvazaar_cli/kvazaar_cli.vcxproj
+@@ -22,24 +22,24 @@
+     <ProjectGuid>{C755308D-9B3E-4712-99AB-7F6F4E2DA567}</ProjectGuid>
+     <Keyword>Win32Proj</Keyword>
+     <RootNamespace>kvazaar_cli</RootNamespace>
+-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+     <UseDebugLibraries>true</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+     <UseDebugLibraries>true</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+     <UseDebugLibraries>false</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+     <UseDebugLibraries>false</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+   <ImportGroup Label="ExtensionSettings">
+@@ -77,6 +77,11 @@
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+     <PostBuildEvent />
+   </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
++    <ClCompile>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++    </ClCompile>
++  </ItemDefinitionGroup>
+   <ItemGroup>
+     <ProjectReference Include="..\kvazaar_lib\kvazaar_lib.vcxproj">
+       <Project>{eea3bdd1-8a08-41c1-ba57-e05d5c2cd8ff}</Project>
+diff --git a/build/kvazaar_lib/kvazaar_lib.vcxproj b/build/kvazaar_lib/kvazaar_lib.vcxproj
+index d3880457..c958047c 100644
+--- a/build/kvazaar_lib/kvazaar_lib.vcxproj
++++ b/build/kvazaar_lib/kvazaar_lib.vcxproj
+@@ -22,28 +22,28 @@
+     <ProjectGuid>{EEA3BDD1-8A08-41C1-BA57-E05D5C2CD8FF}</ProjectGuid>
+     <Keyword>Win32Proj</Keyword>
+     <RootNamespace>kvazaar_lib</RootNamespace>
+-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>true</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>true</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>false</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>false</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+   <ImportGroup Label="ExtensionSettings">
+@@ -103,6 +103,7 @@
+     <ClCompile>
+       <UndefinePreprocessorDefinitions>
+       </UndefinePreprocessorDefinitions>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+     </ClCompile>
+   </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+@@ -344,4 +345,4 @@
+   <ImportGroup Label="ExtensionTargets">
+     <Import Project="..\yasm\vsyasm.targets" />
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+diff --git a/build/kvazaar_tests/kvazaar_tests.vcxproj b/build/kvazaar_tests/kvazaar_tests.vcxproj
+index d027bdcb..542ce3aa 100644
+--- a/build/kvazaar_tests/kvazaar_tests.vcxproj
++++ b/build/kvazaar_tests/kvazaar_tests.vcxproj
+@@ -22,24 +22,24 @@
+     <ProjectGuid>{3CD1C68B-542C-46D8-9B8A-6C91C5A3F312}</ProjectGuid>
+     <Keyword>Win32Proj</Keyword>
+     <RootNamespace>kvazaar_tests</RootNamespace>
+-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+     <UseDebugLibraries>true</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+     <UseDebugLibraries>true</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+     <UseDebugLibraries>false</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+     <UseDebugLibraries>false</UseDebugLibraries>
+-    <PlatformToolset>v140</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+   <ImportGroup Label="ExtensionSettings">
+@@ -78,6 +78,9 @@
+     <PostBuildEvent>
+       <Command>$(TargetPath)</Command>
+     </PostBuildEvent>
++    <ClCompile>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++    </ClCompile>
+   </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+     <PostBuildEvent>

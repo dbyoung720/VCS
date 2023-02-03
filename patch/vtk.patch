@@ -1,0 +1,26 @@
+ Common/DataModel/vtkCellAttribute.cxx | 4 ++--
+ ThirdParty/vtkm/vtkvtkm/vtk-m         | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Common/DataModel/vtkCellAttribute.cxx b/Common/DataModel/vtkCellAttribute.cxx
+index 776f45c9b3..8ccb9c63b8 100644
+--- a/Common/DataModel/vtkCellAttribute.cxx
++++ b/Common/DataModel/vtkCellAttribute.cxx
+@@ -68,8 +68,8 @@ bool vtkCellAttribute::Initialize(
+ vtkStringToken::Hash vtkCellAttribute::GetHash() const
+ {
+   std::ostringstream str;
+-  str << this->GetNumberOfComponents() << "â€“" << this->GetName().Data() << "â€“"
+-      << this->GetAttributeType().Data() << "â€“" << this->GetSpace().Data();
++  str << this->GetNumberOfComponents() << "¨C" << this->GetName().Data() << "¨C"
++      << this->GetAttributeType().Data() << "¨C" << this->GetSpace().Data();
+   vtkStringToken result(str.str());
+   return result.GetId();
+ }
+diff --git a/ThirdParty/vtkm/vtkvtkm/vtk-m b/ThirdParty/vtkm/vtkvtkm/vtk-m
+index 618c40a91b..d2f0f3c990 160000
+--- a/ThirdParty/vtkm/vtkvtkm/vtk-m
++++ b/ThirdParty/vtkm/vtkvtkm/vtk-m
+@@ -1 +1 @@
+-Subproject commit 618c40a91b9085e279e0103e97c8dfd1114665b3
++Subproject commit d2f0f3c99013c7fa9a0e8828c1d51bbcbb292dde

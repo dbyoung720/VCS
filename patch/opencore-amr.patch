@@ -1,0 +1,250 @@
+ amrnb/libopencore-amrnb.vcxproj | 46 ++++++++++++++++++++---------------------
+ amrwb/libopencore-amrwb.vcxproj | 43 +++++++++++++++++++-------------------
+ 2 files changed, 45 insertions(+), 44 deletions(-)
+
+diff --git a/amrnb/libopencore-amrnb.vcxproj b/amrnb/libopencore-amrnb.vcxproj
+index b4b9b31..364a39b 100644
+--- a/amrnb/libopencore-amrnb.vcxproj
++++ b/amrnb/libopencore-amrnb.vcxproj
+@@ -293,40 +293,38 @@
+     <Keyword>Win32Proj</Keyword>
+     <ProjectGuid>{b47f1954-f5a1-4d40-8423-ce28e2d5d607}</ProjectGuid>
+     <RootNamespace>libopencoreamrnb</RootNamespace>
+-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>true</UseDebugLibraries>
+-    <PlatformToolset>v141</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+     <CharacterSet>Unicode</CharacterSet>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>false</UseDebugLibraries>
+-    <PlatformToolset>v141</PlatformToolset>
+-    <WholeProgramOptimization>true</WholeProgramOptimization>
++    <PlatformToolset>v143</PlatformToolset>
++    <WholeProgramOptimization>false</WholeProgramOptimization>
+     <CharacterSet>Unicode</CharacterSet>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>true</UseDebugLibraries>
+-    <PlatformToolset>v142</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+     <CharacterSet>Unicode</CharacterSet>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>false</UseDebugLibraries>
+-    <PlatformToolset>v142</PlatformToolset>
+-    <WholeProgramOptimization>true</WholeProgramOptimization>
++    <PlatformToolset>v143</PlatformToolset>
++    <WholeProgramOptimization>false</WholeProgramOptimization>
+     <CharacterSet>Unicode</CharacterSet>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+-  <ImportGroup Label="ExtensionSettings">
+-  </ImportGroup>
+-  <ImportGroup Label="Shared">
+-  </ImportGroup>
++  <ImportGroup Label="ExtensionSettings" />
++  <ImportGroup Label="Shared" />
+   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+   </ImportGroup>
+@@ -347,8 +345,7 @@
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+     <LinkIncremental>false</LinkIncremental>
+-    <PublicIncludeDirectories>
+-    </PublicIncludeDirectories>
++    <PublicIncludeDirectories />
+     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+@@ -366,10 +363,11 @@
+       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+       <AdditionalIncludeDirectories>$(ProjectDir)\..\oscl;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\enc\include;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\common\dec\include;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\dec\include;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\common\include;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\enc\src;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\dec\src;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\common\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++      <DebugInformationFormat>None</DebugInformationFormat>
+     </ClCompile>
+     <Link>
+-      <SubSystem>
+-      </SubSystem>
++      <SubSystem />
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+     </Link>
+   </ItemDefinitionGroup>
+@@ -384,10 +382,11 @@
+       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+       <AdditionalIncludeDirectories>$(ProjectDir)\..\oscl;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\enc\include;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\common\dec\include;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\dec\include;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\common\include;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\enc\src;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\dec\src;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_nb\common\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++      <DebugInformationFormat>None</DebugInformationFormat>
+     </ClCompile>
+     <Link>
+-      <SubSystem>
+-      </SubSystem>
++      <SubSystem />
+       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+       <OptimizeReferences>true</OptimizeReferences>
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+@@ -401,10 +400,11 @@
+       <ConformanceMode>true</ConformanceMode>
+       <PrecompiledHeader>Use</PrecompiledHeader>
+       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++      <DebugInformationFormat>None</DebugInformationFormat>
+     </ClCompile>
+     <Link>
+-      <SubSystem>
+-      </SubSystem>
++      <SubSystem />
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+     </Link>
+   </ItemDefinitionGroup>
+@@ -418,16 +418,16 @@
+       <ConformanceMode>true</ConformanceMode>
+       <PrecompiledHeader>Use</PrecompiledHeader>
+       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++      <DebugInformationFormat>None</DebugInformationFormat>
+     </ClCompile>
+     <Link>
+-      <SubSystem>
+-      </SubSystem>
++      <SubSystem />
+       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+       <OptimizeReferences>true</OptimizeReferences>
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+     </Link>
+   </ItemDefinitionGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+-  <ImportGroup Label="ExtensionTargets">
+-  </ImportGroup>
++  <ImportGroup Label="ExtensionTargets" />
+ </Project>
+\ No newline at end of file
+diff --git a/amrwb/libopencore-amrwb.vcxproj b/amrwb/libopencore-amrwb.vcxproj
+index e5d67ca..1fccf67 100644
+--- a/amrwb/libopencore-amrwb.vcxproj
++++ b/amrwb/libopencore-amrwb.vcxproj
+@@ -86,40 +86,38 @@
+     <Keyword>Win32Proj</Keyword>
+     <ProjectGuid>{440b7fcb-9712-4d57-b631-33058aeb8092}</ProjectGuid>
+     <RootNamespace>libopencoreamrwb</RootNamespace>
+-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>true</UseDebugLibraries>
+-    <PlatformToolset>v141</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+     <CharacterSet>Unicode</CharacterSet>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>false</UseDebugLibraries>
+-    <PlatformToolset>v141</PlatformToolset>
+-    <WholeProgramOptimization>true</WholeProgramOptimization>
++    <PlatformToolset>v143</PlatformToolset>
++    <WholeProgramOptimization>false</WholeProgramOptimization>
+     <CharacterSet>Unicode</CharacterSet>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>true</UseDebugLibraries>
+-    <PlatformToolset>v142</PlatformToolset>
++    <PlatformToolset>v143</PlatformToolset>
+     <CharacterSet>Unicode</CharacterSet>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>false</UseDebugLibraries>
+-    <PlatformToolset>v142</PlatformToolset>
+-    <WholeProgramOptimization>true</WholeProgramOptimization>
++    <PlatformToolset>v143</PlatformToolset>
++    <WholeProgramOptimization>false</WholeProgramOptimization>
+     <CharacterSet>Unicode</CharacterSet>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+-  <ImportGroup Label="ExtensionSettings">
+-  </ImportGroup>
+-  <ImportGroup Label="Shared">
+-  </ImportGroup>
++  <ImportGroup Label="ExtensionSettings" />
++  <ImportGroup Label="Shared" />
+   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+   </ImportGroup>
+@@ -156,10 +154,11 @@
+       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+       <AdditionalIncludeDirectories>$(ProjectDir)\..\oscl;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_wb\dec\include;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\common\dec\include</AdditionalIncludeDirectories>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++      <DebugInformationFormat>None</DebugInformationFormat>
+     </ClCompile>
+     <Link>
+-      <SubSystem>
+-      </SubSystem>
++      <SubSystem />
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+     </Link>
+   </ItemDefinitionGroup>
+@@ -174,10 +173,11 @@
+       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+       <AdditionalIncludeDirectories>$(ProjectDir)\..\oscl;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\amr_wb\dec\include;$(ProjectDir)\..\opencore\codecs_v2\audio\gsm_amr\common\dec\include</AdditionalIncludeDirectories>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++      <DebugInformationFormat>None</DebugInformationFormat>
+     </ClCompile>
+     <Link>
+-      <SubSystem>
+-      </SubSystem>
++      <SubSystem />
+       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+       <OptimizeReferences>true</OptimizeReferences>
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+@@ -191,10 +191,11 @@
+       <ConformanceMode>true</ConformanceMode>
+       <PrecompiledHeader>Use</PrecompiledHeader>
+       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++      <DebugInformationFormat>None</DebugInformationFormat>
+     </ClCompile>
+     <Link>
+-      <SubSystem>
+-      </SubSystem>
++      <SubSystem />
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+     </Link>
+   </ItemDefinitionGroup>
+@@ -208,16 +209,16 @@
+       <ConformanceMode>true</ConformanceMode>
+       <PrecompiledHeader>Use</PrecompiledHeader>
+       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++      <DebugInformationFormat>None</DebugInformationFormat>
+     </ClCompile>
+     <Link>
+-      <SubSystem>
+-      </SubSystem>
++      <SubSystem />
+       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+       <OptimizeReferences>true</OptimizeReferences>
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+     </Link>
+   </ItemDefinitionGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+-  <ImportGroup Label="ExtensionTargets">
+-  </ImportGroup>
++  <ImportGroup Label="ExtensionTargets" />
+ </Project>
+\ No newline at end of file
