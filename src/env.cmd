@@ -52,6 +52,8 @@ if exist %CodeConfig% (
 	echo !SourcePath! 源代码不存在，请下载源码，放到此目录下
 	pause
 )
+if exist %SourcePath% (goto CCT)
+echo %SourcePath% 源代码不存在，请下载源码，放到此目录下
 
 :CCT
 :: 设置 CMake 编译默认参数
@@ -66,21 +68,17 @@ set "Bpara=-DVulkanRegistry_DIR=%VRD02% %Bpara%"
 
 :: 设置临时编译路径
 set "BuildPathX=%RootPath%VSBuild\%CodeName%\%Platform%"
-
 if exist %BuildPathX% (
   RD /Q /S %BuildPathX%
 )
-
 if not exist "%RootPath%VSBuild" (
     cd %RootPath%
     md VSBuild
 )
-
 if not exist "%RootPath%VSBuild\%CodeName%" (
   cd %RootPath%VSBuild
   md %CodeName%
 )
-
 if not exist "%RootPath%VSBuild\%CodeName%\%Platform%" (
   cd %RootPath%VSBuild\%CodeName%
   md %Platform%
@@ -115,6 +113,7 @@ set Path=%RootPath%Tools;%ScoopDir%\apps\nsis\current;%VSSDK%\bin;%Path%;
 :: VS2022 编译
 set "BuildLanguage=Visual Studio 17 2022"
 
+:: 编译类型
 if %Platform%==x86 (
   set Platform1=x86
   set Platform2=Win32
