@@ -85,7 +85,7 @@ goto bEnd
 for /f "delims=" %%a in ('call %RootPath%src\rdini.cmd /s PathX /i CMakePath %CodeConfig%') do (set mValue=%%a)
 if defined mValue (
   set  CMakeFilePathX=%SourcePath%\%mValue%
-  set  SourcePath=%CMakeFilePathX%
+  set  SourcePath=!CMakeFilePathX!
   goto buildcmake
 )
 
