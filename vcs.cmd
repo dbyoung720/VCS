@@ -61,3 +61,4 @@ if exist "%SourcePath%\.svn\" (
 
 :: »Øµ½ vcs Ä¿Â¼
 CD /D %RootPath%
+CLS
