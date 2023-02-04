@@ -3,7 +3,7 @@
 setlocal enabledelayedexpansion
 color A
 
-@echo 运行本程序时，请确保 tools 已经安装了
+@echo *** 运行本程序时，请确保 tools 已经安装了 ***
 
 set CodeName=%1
 set Platform=%2
