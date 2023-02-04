@@ -10,7 +10,7 @@ VCS
     2、体积小：VCS 整个文件系统大小不足300K(不包含 patch 目录)；
     3、速度快：VC 编译使用多进程编译，编译速度快；
     4、开放性：自己可以按示例添加自定义编译到 patch 目录下；
-    5、博客地址：https://blog.csdn.net/dbyoung/article/details/128879828?spm=1001.2014.3001.5501
+    5、博客地址：[https://blog.csdn.net/dbyoung/article/details/128879828?spm=1001.2014.3001.5501](https://blog.csdn.net/dbyoung/article/details/128879828?spm=1001.2014.3001.5501)
     
 ## 二：使用说明
     1、编译工具：VS2022 比不可少。其它编译工具，使用 scoop 统一管理。因此，在使用本软件前，必须先安装 scoop 及其编译工具；
