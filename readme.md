@@ -10,7 +10,7 @@ VCS
     2、Small: the whole file system size of VCS is less than 300K(no include patch dir);
     3、Fast : VC compilation uses multi-process compilation, which is fast;
     4、Open : You can add custom compilation to the patch directory according to examples;
-    5、blog : [https://blog.csdn.net/dbyoung/article/details/128879828?spm=1001.2014.3001.5501](https://blog.csdn.net/dbyoung/article/details/128879828?spm=1001.2014.3001.5501)
+    5、blog : https://blog.csdn.net/dbyoung/article/details/128879828?spm=1001.2014.3001.5501
 
 ## II. Instructions
     1、Compile tools: VS2022 is must. For other compile tools, use scoop for unified management. Therefore, scoop and its compile tools must be installed before using vcs;
