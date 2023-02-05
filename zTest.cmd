@@ -24,6 +24,7 @@ rem call vcs giflib        x86
 rem call vcs libtiff       x86
 rem call vcs Webp          x86
 rem call vcs fribidi       x86
+rem call vcs IMath         x86
 rem call vcs openexr       x86
 
 rem :: 文本类
@@ -48,7 +49,7 @@ rem :: 视频类
 rem call vcs Vulkan-Headers x86
 rem call vcs Vulkan-Loader  x86
 rem call vcs SPIRV-Headers  x86
-rem call vcs SPIRV-Cross x86
+rem call vcs SPIRV-Cross    x86
 rem call vcs SPIRV-Tools    x86
 rem call vcs glslang        x86
 rem call vcs x264     x86
@@ -57,21 +58,21 @@ rem call vcs openh264 x86
 rem call vcs dav1d    x86
 rem call vcs libmfx   x86
 rem call vcs rav1e    x86
-rem call vcs kvazaar  x86
-rem call vcs libvpx    x86
-rem call vcs libavif   x86
-rem call vcs AMF       x86
-rem call vcs libuv     x86
-rem call vcs AOM       x86
+call vcs kvazaar  x86
+call vcs libvpx    x86
+call vcs libavif   x86
+call vcs AMF       x86
+call vcs libuv     x86
+call vcs AOM       x86
 
-rem :: 语言类
-rem call vcs lmdb      x86
-rem call vcs hdf5      x86
-rem call vcs boost     x86
-rem call vcs sqlite3   x86
-rem call vcs llvm      x86
-rem call vcs QT5       x86
-rem call vcs VTK       x86
-rem call vcs opencv    x86
+:: 语言类
+call vcs lmdb      x86
+call vcs hdf5      x86
+call vcs boost     x86
+call vcs sqlite3   x86
+call vcs llvm      x86
+call vcs QT5       x86
+call vcs VTK       x86
+call vcs opencv    x86
 
 pause
