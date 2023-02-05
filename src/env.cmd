@@ -72,15 +72,15 @@ if exist %BuildPathX% (
   RD /Q /S %BuildPathX%
 )
 if not exist "%RootPath%VSBuild" (
-    cd %RootPath%
+    cd /d %RootPath%
     md VSBuild
 )
 if not exist "%RootPath%VSBuild\%CodeName%" (
-  cd %RootPath%VSBuild
+  cd /d %RootPath%VSBuild
   md %CodeName%
 )
 if not exist "%RootPath%VSBuild\%CodeName%\%Platform%" (
-  cd %RootPath%VSBuild\%CodeName%
+  cd /d %RootPath%VSBuild\%CodeName%
   md %Platform%
 )
 
@@ -126,9 +126,8 @@ if %Platform%==x86 (
   set PlatformMSys2=x86_64-w64-mingw32
 )
 
+:: VS2022 环境变量设置
 call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars%Platform3%.bat"
-
-:: VC 头文件、库文件搜索路径
 set "INCLUDE=%VSSDK%\include;%VSSDK%\include\libxml2;%VSSDK%\include\freetype2;%VSSDK%\include\TBB;%VSSDK%\include\harfbuzz;%VSSDK%\QT5;%VSSDK%\include\sdl2;%CUDA_INC_PATH%;%VULKAN_SDK%\include;%INCLUDE%"
 set "LIB=%VSSDK%\lib;%CUDA_LIB_PATH%;%VULKAN_SDK%\lib;%VCToolsInstallDir%\atlmfc\lib\%Platform1%;%LIB%"
 set "UseEnv=True"
