@@ -126,9 +126,6 @@ if %Platform%==x86 (
   set PlatformMSys2=x86_64-w64-mingw32
 )
 
-:: 注意区分大小写
-if %CodeName%==AOM (if %Platform%==x86 (echo VC2022 无法在 x86、amd64_x86 模式下编译 AOM&&pause&&exit 0))
-if %CodeName%==aom (if %Platform%==x86 (echo VC2022 无法在 x86、amd64_x86 模式下编译 AOM&&pause&&exit 0))
 call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars%Platform3%.bat"
 
 :: VC 头文件、库文件搜索路径
