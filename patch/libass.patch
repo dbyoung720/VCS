@@ -1,18 +1,16 @@
- Makefile.am | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ Makefile.am | 4 ----
+ 1 file changed, 4 deletions(-)
 
 diff --git a/Makefile.am b/Makefile.am
-index 1bac0a2..8eb460c 100644
+index 0c1a5b4..0ac3bfd 100644
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -1,9 +1,6 @@
+@@ -1,8 +1,4 @@
  ACLOCAL_AMFLAGS = -I m4
- AM_CPPFLAGS = -I$(top_srcdir)/libass
 -AM_CFLAGS = -std=gnu99 -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter \
 -            -Werror-implicit-function-declaration -Wstrict-prototypes        \
 -            -Wpointer-arith -Wredundant-decls -Wno-missing-field-initializers\
 -            -D_GNU_SOURCE
-+AM_CFLAGS = -std=gnu99 -Wall -D_GNU_SOURCE
  
  EXTRA_DIST = libass.pc.in Changelog MAINTAINERS ltnasm.sh
  
