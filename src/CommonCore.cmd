@@ -51,8 +51,13 @@ if not exist "%BuildPathX%" (
   md %Platform1%
 )
 
+set AddParam=
+if exist %CodeConfig% (
+  for /f "delims=" %%a in ('call %RootPath%src\rdini.cmd /s build /i command %CodeConfig%') do (set AddParam=%%a)
+)
+
 CD /D "%BuildPathX%"
-bash -c "CC=cl %InvSourcePath%/configure --enable-static --prefix=%InvVSSDK%"
+bash -c "CC=cl %InvSourcePath%/configure %AddParam% --enable-static --prefix=%InvVSSDK%"
 bash -c "make -j 16"
 bash -c "make install"
 
@@ -89,6 +94,10 @@ if defined mValue (
   goto buildcmake
 )
 
+if exist "%SourcePath%\configure" (
+  goto buildgcc
+) 
+
 for /f "delims=" %%a in ('call %RootPath%src\rdini.cmd /s build /i command %CodeConfig%') do (set cValue=%%a)
 if defined cValue (
   goto buildmeson
@@ -97,10 +106,6 @@ if defined cValue (
 if exist %MesonBuild% (
   goto buildmeson
 )
-
-if exist "%SourcePath%\configure" (
-  goto buildgcc
-) 
 
 echo 无法确定如何编译 %CodeName%，请使用自定义编译
 pause
