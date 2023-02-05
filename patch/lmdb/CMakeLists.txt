@@ -53,7 +53,6 @@ add_executable(mtest6 ${LMDB_SOURCE_PATH}/mtest6.c ${SRC_LIB_FILE})
 target_compile_definitions(mtest6 PUBLIC MDB_DEBUG) # 添加宏定义
 
 #安装
-#set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/SDK) #指定安装目录(如果不指定目录，默认是 C:\Program Files (x86)\lmdb)
 set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE PATH "Installation directory for executables")
 set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib" CACHE PATH "Installation directory for libraries")
 set(INSTALL_INC_DIR "${CMAKE_INSTALL_PREFIX}/include" CACHE PATH "Installation directory for headers")
