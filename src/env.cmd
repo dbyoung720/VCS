@@ -118,16 +118,21 @@ if %Platform%==x86 (
   set Platform1=x86
   set Platform2=Win32
   set Platform3=32
+  set Platform4=x86
   set PlatformMSys2=i686-w64-mingw32
 ) else (
   set Platform1=x64
   set Platform2=x64
   set Platform3=64
+  set Platform4=amd64
   set PlatformMSys2=x86_64-w64-mingw32
 )
 
 :: VS2022 环境变量设置
-call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars%Platform3%.bat"
+SET "PARAMS=-property installationPath -requires Microsoft.Component.MSBuild Microsoft.VisualStudio.Component.VC.ATLMFC Microsoft.VisualStudio.Component.VC.Tools.x86.x64  -latest -prerelease -version [,17.0)"
+set "VS2022=vswhere.exe %PARAMS%"
+FOR /f "delims=" %%A IN ('!VS2022!') DO SET "VCVARS=%%A\Common7\Tools\vsdevcmd.bat"
+CALL "%VCVARS%" -no_logo -arch=%Platform4%
 set "INCLUDE=%VSSDK%\include;%VSSDK%\include\libxml2;%VSSDK%\include\freetype2;%VSSDK%\include\TBB;%VSSDK%\include\harfbuzz;%VSSDK%\QT5;%VSSDK%\include\sdl2;%CUDA_INC_PATH%;%VULKAN_SDK%\include;%INCLUDE%"
 set "LIB=%VSSDK%\lib;%CUDA_LIB_PATH%;%VULKAN_SDK%\lib;%VCToolsInstallDir%\atlmfc\lib\%Platform1%;%LIB%"
 set "UseEnv=True"
