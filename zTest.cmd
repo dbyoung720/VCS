@@ -33,7 +33,10 @@ call vcs icu        x86
 call vcs harfbuzz   x86
 call vcs fontconfig x86
 call vcs libass     x86
-call vcs libxml2   x86
+call vcs libxml2    x86
+call vcs leptonica  x86
+call vcs tesseract  x86
+call vcs assimp     x86
 
 :: 音频类
 call vcs ogg          x86
@@ -46,12 +49,14 @@ call vcs lame         x86
 call vcs opencore-amr x86
 
 :: 视频类
-call vcs Vulkan-Headers x86
-call vcs Vulkan-Loader  x86
-call vcs SPIRV-Headers  x86
-call vcs SPIRV-Cross    x86
-rem call vcs SPIRV-Tools    x86
-rem call vcs glslang        x86
+call vcs OpenCL-Headers   x86
+call vcs Vulkan-Headers   x86
+call vcs Vulkan-Loader    x86
+call vcs AviSynth-Headers x86
+call vcs SPIRV-Headers    x86
+call vcs SPIRV-Cross      x86
+rem call vcs SPIRV-Tools      x86
+rem call vcs glslang          x86
 call vcs x264     x86
 call vcs x265     x86
 call vcs openh264 x86
@@ -59,13 +64,17 @@ call vcs dav1d    x86
 call vcs libmfx   x86
 call vcs rav1e    x86
 call vcs kvazaar  x86
-call vcs libvpx    x86
-call vcs libavif   x86
-call vcs AMF       x86
-call vcs libuv     x86
-call vcs AOM       x86
+call vcs libvpx   x86
+call vcs libavif  x86
+call vcs AMF      x86
+call vcs libuv    x86
+call vcs AOM      x86
+call vcs frei0r   x86
 
 :: 语言类
+call vcs ispc      x86
+call vcs ccache    x86
+call vcs leveldb   x86
 call vcs lmdb      x86
 call vcs hdf5      x86
 call vcs boost     x86
