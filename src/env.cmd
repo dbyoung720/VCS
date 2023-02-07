@@ -54,6 +54,7 @@ if exist %CodeConfig% (
 )
 if exist %SourcePath% (goto CCT)
 echo %SourcePath% 源代码不存在，请下载源码，放到此目录下
+pause
 
 :CCT
 :: 设置 CMake 编译默认参数
