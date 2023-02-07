@@ -15,7 +15,6 @@ MSBuild.exe %SourcePath%\build\kvazaar_VS2015.sln /nologo /consoleloggerparamete
 
 :: 检查 VC 编译是否有错误
 if %errorlevel% NEQ 0 (
-  echo 编译出现错误，停止编译。用 VS2022 打开，可自行修改。
   copy /Y %SourcePath%\src\strategies\%platform%_asm\*.obj %SourcePath%\build\kvazaar_lib\%platform2%-Release\*.*
 	MSBuild.exe %SourcePath%\build\kvazaar_VS2015.sln /nologo /consoleloggerparameters:Verbosity=minimal /maxcpucount:16 /nodeReuse:true^
 		/target:Build /property:Configuration=Release;Platform=%platform2%^

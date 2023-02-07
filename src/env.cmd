@@ -62,9 +62,13 @@ set "sPara="
 for /f "tokens=*" %%I in (%sFile%) do (set "sPara=!sPara! %%I")
 set "Bpara=%sPara% %Bpara%"
 
-set VRD01=%RootPath%patch\vulkan\registry
-set VRD02=%VRD01:\=/%
-set "Bpara=-DVulkanRegistry_DIR=%VRD02% %Bpara%"
+set VRD=%RootPath%patch\vulkan\registry
+set VRD=%VRD:\=/%
+
+set PYTHONEXE=%ScoopDir%\apps\python39\current\Python.exe
+set PYTHONEXE=%PYTHONEXE:\=/%
+
+set "Bpara=-DPYTHON_EXECUTABLE=%PYTHONEXE% -DVulkanRegistry_DIR=%VRD% %Bpara%"
 
 :: …Ë÷√¡Ÿ ±±‡“Î¬∑æ∂
 set "BuildPathX=%RootPath%VSBuild\%CodeName%\%Platform%"

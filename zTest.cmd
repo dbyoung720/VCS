@@ -60,7 +60,7 @@ call vcs AviSynth-Headers x86
 call vcs SPIRV-Headers    x86
 call vcs SPIRV-Cross      x86
 rem call vcs SPIRV-Tools      x86
-rem call vcs glslang          x86
+call vcs glslang          x86
 call vcs x264     x86
 call vcs x265     x86
 call vcs openh264 x86
