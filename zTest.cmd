@@ -38,6 +38,9 @@ call vcs leptonica  x86
 call vcs tesseract  x86
 call vcs assimp     x86
 
+:: 网络类
+call vcs openssl  x86
+
 :: 音频类
 call vcs ogg          x86
 call vcs vorbis       x86
@@ -47,6 +50,7 @@ call vcs opus         x86
 call vcs mpg123       x86
 call vcs lame         x86
 call vcs opencore-amr x86
+call vcs opus         x86
 
 :: 视频类
 call vcs OpenCL-Headers   x86
