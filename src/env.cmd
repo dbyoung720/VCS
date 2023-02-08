@@ -105,6 +105,7 @@ set PKG_CONFIG_PATH=%LogicDSK%%AbsolDir%
 
 :: 设置系统搜索路径
 if %CodeName%==glib       goto Env02
+if %CodeName%==cairo      goto Env02
 if %CodeName%==QT5        goto Env02
 if %CodeName%==llvm       goto Env02
 if %CodeName%==fontconfig goto Env02
@@ -142,7 +143,7 @@ set "VS2022=vswhere.exe %PARAMS%"
 FOR /f "delims=" %%A IN ('!VS2022!') DO SET "VCVARS=%%A\Common7\Tools\vsdevcmd.bat"
 CALL "%VCVARS%" -no_logo -arch=%Platform4%
 set "INCLUDE=%VSSDK%\include;%VSSDK%\include\libxml2;%VSSDK%\include\freetype2;%VSSDK%\include\TBB;%VSSDK%\include\harfbuzz;%VSSDK%\QT5;%VSSDK%\include\sdl2;%CUDA_INC_PATH%;%VULKAN_SDK%\include;%INCLUDE%"
-set "LIB=%VSSDK%\lib;%CUDA_LIB_PATH%;%VULKAN_SDK%\lib;%VCToolsInstallDir%\atlmfc\lib\%Platform1%;%LIB%"
+set "LIB=%VSSDK%\lib;%CUDA_LIB_PATH%;%VULKAN_SDK%\lib;%VCToolsInstallDir%atlmfc\lib\%Platform1%;%LIB%"
 set "UseEnv=True"
 
 :: 设置其他第三方SDK环境变量
