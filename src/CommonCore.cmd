@@ -57,7 +57,7 @@ if exist %CodeConfig% (
 )
 
 CD /D "%BuildPathX%"
-bash -c "CC=cl %InvSourcePath%/configure %AddParam% --enable-static --prefix=%InvVSSDK%"
+bash -c "CC=cl %InvSourcePath%/configure %AddParam% --disable-shared --enable-static --build=%PlatformMSys2% --host=%PlatformMSys2% --prefix=%InvVSSDK%"
 bash -c "make -j 16"
 bash -c "make install"
 
@@ -79,6 +79,12 @@ if exist %MesonBuild% (
 ) 
 
 if exist "%SourcePath%\configure" (
+  goto buildgcc
+) 
+
+if exist "%SourcePath%\autogen.sh" (
+  CD /D "%SourcePath%"
+  bash -c "sh ./autogen.sh"
   goto buildgcc
 ) 
 
