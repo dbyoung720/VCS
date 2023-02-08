@@ -5,7 +5,7 @@ call vcs zlib    x86
 call vcs lz4     x86
 call vcs xz      x86
 call vcs bzip2   x86
-rem call vcs z3      x86
+call vcs z3      x86
 call vcs zziplib x86
 call vcs zstd    x86
 call vcs zenlib  x86
