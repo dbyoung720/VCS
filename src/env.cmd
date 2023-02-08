@@ -104,6 +104,7 @@ set AbsolDir=%PKG_CONFIG_PATH:~3%
 set PKG_CONFIG_PATH=%LogicDSK%%AbsolDir%
 
 :: 设置系统搜索路径
+if %CodeName%==glib       goto Env02
 if %CodeName%==QT5        goto Env02
 if %CodeName%==llvm       goto Env02
 if %CodeName%==fontconfig goto Env02

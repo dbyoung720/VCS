@@ -26,6 +26,7 @@ call vcs Webp          x86
 call vcs fribidi       x86
 call vcs IMath         x86
 call vcs openexr       x86
+call vcs glib          x86
 
 :: 文本类
 call vcs libiconv   x86
@@ -37,9 +38,11 @@ call vcs libxml2    x86
 call vcs leptonica  x86
 call vcs tesseract  x86
 call vcs assimp     x86
+call vcs pcre2      x86
 
 :: 网络类
-call vcs openssl  x86
+call vcs openssl    x86
+call vcs libtorrent x86
 
 :: 音频类
 call vcs ogg          x86

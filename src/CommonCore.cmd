@@ -114,13 +114,13 @@ goto bEnd
 :buildmeson
 CD /D "%BuildPathX%"
 if not exist %CodeConfig% (
-	meson -Dbuildtype=release -Ddefault_library=static -Ddebug=false -Db_vscrt=mt --prefix=%VSSDK% %SourcePath% %BuildPathX%
+	meson -Doptimization=3 -Ddebug=false -Ddefault_library=static -Ddebug=false -Db_vscrt=mt --prefix=%VSSDK% %SourcePath% %BuildPathX%
 ) else (
   for /f "delims=" %%a in ('call %RootPath%src\rdini.cmd /s build /i command %CodeConfig%') do (set cValue=%%a)
   if defined cValue (
     meson %cValue% --prefix=%VSSDK% %SourcePath% %BuildPathX%
   ) else (
-	  meson -Dbuildtype=release -Ddefault_library=static -Ddebug=false -Db_vscrt=mt --prefix=%VSSDK% %SourcePath% %BuildPathX%
+	  meson -Doptimization=3 -Ddebug=false -Ddefault_library=static -Ddebug=false -Db_vscrt=mt --prefix=%VSSDK% %SourcePath% %BuildPathX%
   )
 )
 
