@@ -1,10 +1,13 @@
 @echo off
+%1 mshta vbscript:CreateObject("Shell.Application").ShellExecute("cmd.exe","/c %~s0 ::","","runas",1)(window.close)&&exit
+
 set BuildRootPath=%1
 set BuildPlatform=%2
 set SourceCodeName=%3
 set VCProjectNameX=%4
 
 :: Брвы
+CD /D %BuildPathX%
 set CL=/MP
 %ScoopDir%\apps\perl\current\perl\bin\perl %SourcePath%\Configure %Platform5% no-shared --prefix="%VSSDK%"
 nmake
