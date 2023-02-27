@@ -22,5 +22,5 @@ VCS
     6、If you are familiar with the code of vcs, you can modify it according to your own needs; It is relatively easy, with comments;
     7、Because vcs does not support association compile, you must compile the association library first, and then compile the specified library. For example, before compile the ffmpeg library, you must first compile other third-party libraries;
     8、Because the msys2/meson compile uses a relative directory, the program and the directory where the source code is saved must be a logical disk, cannot cross drive letter;
-    9、If cmake compile fails, cmake-gui will be opened automatically and can be modified by yourself; If the compile of VC project fails, VC project will be opened automatically and can be modified by yourself;
+    9、If cmake compile fails, cmake-gui will be opened automatically and can be modified by yourself; If the compile of VC project fails, VC project will be opened automatically by VS2022 and can be modified by yourself;
     
