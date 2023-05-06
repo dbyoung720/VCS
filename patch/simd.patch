@@ -1,0 +1,27 @@
+ prj/cmake/CMakeLists.txt | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/prj/cmake/CMakeLists.txt b/prj/cmake/CMakeLists.txt
+index 59a996e2..e2e85b73 100644
+--- a/prj/cmake/CMakeLists.txt
++++ b/prj/cmake/CMakeLists.txt
+@@ -145,13 +145,13 @@ if(SIMD_TEST AND SIMD_OPENCV)
+ endif()
+ 
+ if(CMAKE_GENERATOR MATCHES "Visual Studio")
+-	if((CMAKE_GENERATOR_PLATFORM STREQUAL "x64") OR (CMAKE_GENERATOR_PLATFORM STREQUAL "x86"))
++#	if((CMAKE_GENERATOR_PLATFORM STREQUAL "x64") OR (CMAKE_GENERATOR_PLATFORM STREQUAL "x86"))
+ 		include(x86.cmake)
+-	elseif((CMAKE_GENERATOR_PLATFORM STREQUAL "ARM") OR (CMAKE_GENERATOR_PLATFORM STREQUAL "ARM64"))
+-		include(arm.cmake)
+-	else()
+-	    message(FATAL_ERROR "Unknown value of CMAKE_GENERATOR_PLATFORM!")
+-	endif()
++#	elseif((CMAKE_GENERATOR_PLATFORM STREQUAL "ARM") OR (CMAKE_GENERATOR_PLATFORM STREQUAL "ARM64"))
++#		include(arm.cmake)
++#	else()
++#	    message(FATAL_ERROR "Unknown value of CMAKE_GENERATOR_PLATFORM!")
++#	endif()
+ else()
+ 	if((CMAKE_SYSTEM_PROCESSOR STREQUAL "i686") OR (CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64"))
+ 		include(x86.cmake)

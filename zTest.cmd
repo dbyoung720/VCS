@@ -90,5 +90,6 @@ call vcs llvm      x86
 call vcs QT5       x86
 call vcs VTK       x86
 call vcs opencv    x86
+call vcs slint     x86
 
 pause
