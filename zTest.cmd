@@ -1,95 +1,97 @@
 @echo off
 
+set platform=x64
+
 :: 压缩类
-call vcs zlib    x86
-call vcs lz4     x86
-call vcs xz      x86
-call vcs bzip2   x86
-call vcs z3      x86
-call vcs zziplib x86
-call vcs zstd    x86
-call vcs zenlib  x86
-call vcs snappy  x86
+call vcs zlib    %platform%
+call vcs lz4     %platform%
+call vcs xz      %platform%
+call vcs bzip2   %platform%
+call vcs z3      %platform%
+call vcs zziplib %platform%
+call vcs zstd    %platform%
+call vcs zenlib  %platform%
+call vcs snappy  %platform%
 
 :: 测试类
-call vcs googletest x86
-call vcs gflags     x86
-call vcs glog       x86
+call vcs googletest %platform%
+call vcs gflags     %platform%
+call vcs glog       %platform%
 
 :: 图像类
-call vcs libpng        x86
-call vcs libjpeg-turbo x86
-call vcs openjpeg      x86
-call vcs giflib        x86
-call vcs libtiff       x86
-call vcs Webp          x86
-call vcs fribidi       x86
-call vcs IMath         x86
-call vcs openexr       x86
-call vcs glib          x86
+call vcs libpng        %platform%
+call vcs libjpeg-turbo %platform%
+call vcs openjpeg      %platform%
+call vcs giflib        %platform%
+call vcs libtiff       %platform%
+call vcs Webp          %platform%
+call vcs fribidi       %platform%
+call vcs IMath         %platform%
+call vcs openexr       %platform%
+call vcs glib          %platform%
 
 :: 文本类
-call vcs libiconv   x86
-call vcs icu        x86
-call vcs harfbuzz   x86
-call vcs fontconfig x86
-call vcs libass     x86
-call vcs libxml2    x86
-call vcs leptonica  x86
-call vcs tesseract  x86
-call vcs assimp     x86
-call vcs pcre2      x86
+call vcs libiconv   %platform%
+call vcs icu        %platform%
+call vcs harfbuzz   %platform%
+call vcs fontconfig %platform%
+call vcs libass     %platform%
+call vcs libxml2    %platform%
+call vcs leptonica  %platform%
+call vcs tesseract  %platform%
+call vcs assimp     %platform%
+call vcs pcre2      %platform%
 
 :: 网络类
-call vcs openssl    x86
-call vcs libtorrent x86
+call vcs openssl    %platform%
+call vcs libtorrent %platform%
 
 :: 音频类
-call vcs ogg          x86
-call vcs vorbis       x86
-call vcs theora       x86
-call vcs flac         x86
-call vcs opus         x86
-call vcs mpg123       x86
-call vcs lame         x86
-call vcs opencore-amr x86
-call vcs opus         x86
+call vcs ogg          %platform%
+call vcs vorbis       %platform%
+call vcs theora       %platform%
+call vcs flac         %platform%
+call vcs opus         %platform%
+call vcs mpg123       %platform%
+call vcs lame         %platform%
+call vcs opencore-amr %platform%
+call vcs opus         %platform%
 
 :: 视频类
-call vcs OpenCL-Headers   x86
-call vcs Vulkan-Headers   x86
-call vcs Vulkan-Loader    x86
-call vcs AviSynth-Headers x86
-call vcs SPIRV-Headers    x86
-call vcs SPIRV-Cross      x86
-rem call vcs SPIRV-Tools      x86
-call vcs glslang          x86
-call vcs x264     x86
-call vcs x265     x86
-call vcs openh264 x86
-call vcs dav1d    x86
-call vcs libmfx   x86
-call vcs rav1e    x86
-call vcs kvazaar  x86
-call vcs libvpx   x86
-call vcs libavif  x86
-call vcs AMF      x86
-call vcs libuv    x86
-call vcs AOM      x86
-call vcs frei0r   x86
+call vcs OpenCL-Headers   %platform%
+call vcs Vulkan-Headers   %platform%
+call vcs Vulkan-Loader    %platform%
+call vcs AviSynth-Headers %platform%
+call vcs SPIRV-Headers    %platform%
+call vcs SPIRV-Cross      %platform%
+rem call vcs SPIRV-Tools      %platform%
+call vcs glslang          %platform%
+call vcs x264     %platform%
+call vcs x265     %platform%
+call vcs openh264 %platform%
+call vcs dav1d    %platform%
+call vcs libmfx   %platform%
+call vcs rav1e    %platform%
+call vcs kvazaar  %platform%
+call vcs libvpx   %platform%
+call vcs libavif  %platform%
+call vcs AMF      %platform%
+call vcs libuv    %platform%
+call vcs AOM      %platform%
+call vcs frei0r   %platform%
 
 :: 语言类
-call vcs ispc      x86
-call vcs ccache    x86
-call vcs leveldb   x86
-call vcs lmdb      x86
-call vcs hdf5      x86
-call vcs boost     x86
-call vcs sqlite3   x86
-call vcs llvm      x86
-call vcs QT5       x86
-call vcs VTK       x86
-call vcs opencv    x86
-call vcs slint     x86
+call vcs ispc      %platform%
+call vcs ccache    %platform%
+call vcs leveldb   %platform%
+call vcs lmdb      %platform%
+call vcs hdf5      %platform%
+call vcs boost     %platform%
+call vcs sqlite3   %platform%
+call vcs llvm      %platform%
+call vcs QT5       %platform%
+call vcs VTK       %platform%
+call vcs opencv    %platform%
+call vcs slint     %platform%
 
 pause
