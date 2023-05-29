@@ -1,0 +1,32 @@
+ CMakeLists.txt | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e71de78f3..d5f9ff0cb 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -318,15 +318,15 @@ if(NOT MSVC AND NOT (HAVE_SECURE_GETENV OR HAVE___SECURE_GETENV))
+ endif()
+ 
+ # Optional codegen target
+-if(PYTHONINTERP_FOUND)
+-    get_target_property(VulkanRegistry_DIR Vulkan::Registry INTERFACE_INCLUDE_DIRECTORIES)
+-    add_custom_target(VulkanLoader_generated_source
+-                      COMMAND ${PYTHON_EXECUTABLE} ${PROJECT_SOURCE_DIR}/scripts/generate_source.py
+-                              ${VulkanRegistry_DIR} --incremental
+-                      )
+-else()
+-    message("WARNING: VulkanLoader_generated_source target requires python 3")
+-endif()
++#if(PYTHONINTERP_FOUND)
++#    get_target_property(VulkanRegistry_DIR Vulkan::Registry INTERFACE_INCLUDE_DIRECTORIES)
++#    add_custom_target(VulkanLoader_generated_source
++#                      COMMAND ${PYTHON_EXECUTABLE} ${PROJECT_SOURCE_DIR}/scripts/generate_source.py
++#                              ${VulkanRegistry_DIR} --incremental
++#                      )
++#else()
++#    message("WARNING: VulkanLoader_generated_source target requires python 3")
++#endif()
+ 
+ 
+ if(UNIX)
