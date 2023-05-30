@@ -22,6 +22,12 @@ if %errorlevel% NEQ 0 (
 )
 
 :: 安装 include、lib 文件
-copy /Y "%SourcePath%\amf\bin\vs2017x32Release\AmfMediaChromaKeyCommon.lib" "%VSSDK%\lib\AmfMediaChromaKeyCommon.lib"
-copy /Y "%SourcePath%\amf\bin\vs2017x32Release\AmfMediaCommon.lib"          "%VSSDK%\lib\AmfMediaCommon.lib"
-xcopy /e /y /c /i "%SourcePath%\amf\public\include\*.*" "%VSSDK%\include\amf\"
+if %BuildPlatform%==x86 (
+	copy /Y "%SourcePath%\amf\bin\vs2017x32Release\AmfMediaChromaKeyCommon.lib" "%VSSDK%\lib\AmfMediaChromaKeyCommon.lib"
+	copy /Y "%SourcePath%\amf\bin\vs2017x32Release\AmfMediaCommon.lib"          "%VSSDK%\lib\AmfMediaCommon.lib"
+	xcopy /e /y /c /i "%SourcePath%\amf\public\include\*.*" "%VSSDK%\include\amf\"
+) else (
+	copy /Y "%SourcePath%\amf\bin\vs2017x64Release\AmfMediaChromaKeyCommon.lib" "%VSSDK%\lib\AmfMediaChromaKeyCommon.lib"
+	copy /Y "%SourcePath%\amf\bin\vs2017x64Release\AmfMediaCommon.lib"          "%VSSDK%\lib\AmfMediaCommon.lib"
+	xcopy /e /y /c /i "%SourcePath%\amf\public\include\*.*" "%VSSDK%\include\amf\"
+)
