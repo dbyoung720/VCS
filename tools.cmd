@@ -18,9 +18,11 @@ set https_proxy=%httpAddr%:%httpPort%
 if %ToolPlatform%==x86 (
   set "MSys2Platform=mingw-w64-i686"
   set "TempPlatForm=32"
+  set "GCCPlatForm=ming32"
 ) else (
   set "MSys2Platform=mingw-w64-x86_64"
   set "TempPlatForm=64"
+  set "GCCPlatForm=ming64"
 )
 
 :: 设置环境变量
@@ -86,7 +88,7 @@ if not exist "%ScoopDir%\apps\python39\current\scripts\pylint.exe" (
 )
 
 :: 安装 msys2 工具包
-if not exist "%ScoopDir%\apps\msys2\current\mingw32\bin\gcc.exe" (
+if not exist "%ScoopDir%\apps\msys2\current\%GCCPlatForm%\bin\gcc.exe" (
 	echo 安装 msys2 工具包
 	echo export http_proxy=%httpAddr%:%httpPort%>%msys2%\etc\profile.d\proxy.sh
 	echo export https_proxy=%httpAddr%:%httpPort%>>%msys2%\etc\profile.d\proxy.sh
