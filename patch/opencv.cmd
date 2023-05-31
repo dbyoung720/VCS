@@ -9,7 +9,7 @@ set LibraryType=static
 
 :: 扩展库路径
 set opencv_contribX=%DriverPath%\opencv_contrib\modules
-set opencv_contribX=%:\=/%
+set opencv_contribX=%opencv_contribX:\=/%
 
 :: 设置安装路径
 if %LibraryType%==static (
