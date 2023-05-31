@@ -5,13 +5,17 @@ set CodeName=%3
 set VCProjectNameX=%4
 
 :: 编译源代码  
-set LibraryType=static
+set LibraryType=shared
 
 if %LibraryType%==static (
   set InstallPath=%VSSDK%
 ) else (
   set InstallPath=%VSSDK%\%CodeName%\%LibraryType%
 )
+
+:: 排除影响
+CD /D "%BuildRootPath%\VSSDK\2022"
+rename x64 x64_bak
 
 :: 设置 pkgconfig 目录
 set "TMP_CONFIG_PATH=%VSSDK%\lib\pkgconfig"
@@ -31,3 +35,9 @@ CD /D %LibraryType%
 call %SourcePath%\configure -confirm-license -platform win32-msvc -opensource -mp -release -verbose -%LibraryType% -opengl desktop -nomake examples -nomake tests -skip qtwebengine -skip qtspeech --prefix=%InstallPath% 
 call jom
 call jom install
+
+:: 恢复目录
+CD /D "%BuildRootPath%\VSSDK\2022"
+xcopy /e /y /c /i "x64\*.*"      "x64_bak\" 
+rd /S /Q x64
+rename  x64_bak x64
