@@ -11,6 +11,9 @@ set LibraryType=static
 set opencv_contribX=%DriverPath%\opencv_contrib\modules
 set opencv_contribX=%opencv_contribX:\=/%
 
+CD /D "%DriverPath%\opencv_contrib\modules"
+git apply --ignore-space-change --ignore-whitespace -v %RootPath%patch\opencv_contrib.patch
+
 :: 设置安装路径
 if %LibraryType%==static (
   set InstallSDKPath=%VSSDK%
@@ -30,3 +33,9 @@ CMake %Bpara% ^
 CMake %opencvBuildPath%
 Call %BuildRootPath%src\vcm.cmd %BuildRootPath% %opencvBuildPath% %SourceCodeName% %Platform2%
 CMake --build %opencvBuildPath% --config Release --target install
+
+:: 扩展库 opencv_contrib 源代码还原 
+if exist "%DriverPath%\opencv_contrib\.git\" (
+  git clean -d -fx -f
+  git checkout .
+)

@@ -74,7 +74,8 @@ set "Bpara=-DPYTHON_EXECUTABLE=%PYTHONEXE% -DVulkanRegistry_DIR=%VRD% %Bpara%"
 :: …Ë÷√¡Ÿ ±±‡“Î¬∑æ∂
 set "BuildPathX=%RootPath%VSBuild\%CodeName%\%Platform%"
 if exist %BuildPathX% (
-  RD /Q /S %BuildPathX%
+  cd /d %RootPath%VSBuild\%CodeName%
+  RD /Q /S %Platform%
 )
 if not exist "%RootPath%VSBuild" (
     cd /d %RootPath%
