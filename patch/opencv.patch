@@ -155,14 +155,14 @@ index 741267d269..cb75dec4b5 100644
  
 -ocv_clear_vars(HAVE_PTHREADS_PF)
 -if(WITH_PTHREADS_PF AND HAVE_PTHREAD)
+-  set(HAVE_PTHREADS_PF 1)
+-else()
 +#ocv_clear_vars(HAVE_PTHREADS_PF)
 +#if(WITH_PTHREADS_PF AND HAVE_PTHREAD)
-   set(HAVE_PTHREADS_PF 0)
--else()
--  set(HAVE_PTHREADS_PF 0)
--endif()
++#  set(HAVE_PTHREADS_PF 1)
 +#else()
-+#  set(HAVE_PTHREADS_PF 0)
+   set(HAVE_PTHREADS_PF 0)
+-endif()
 +#endif()
 diff --git a/modules/core/src/system.cpp b/modules/core/src/system.cpp
 index d4fdbf05ee..439549e72b 100644
