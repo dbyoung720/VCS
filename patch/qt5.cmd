@@ -5,7 +5,7 @@ set CodeName=%3
 set VCProjectNameX=%4
 
 :: 编译源代码  
-set LibraryType=shared
+set LibraryType=static
 
 if %LibraryType%==static (
   set InstallPath=%VSSDK%
@@ -15,7 +15,7 @@ if %LibraryType%==static (
 
 :: 排除影响
 CD /D "%BuildRootPath%\VSSDK\2022"
-rename x64 x64_bak
+rename %BuildPlatform% %BuildPlatform%_bak
 
 :: 设置 pkgconfig 目录
 set "TMP_CONFIG_PATH=%VSSDK%\lib\pkgconfig"
@@ -38,6 +38,6 @@ call jom install
 
 :: 恢复目录
 CD /D "%BuildRootPath%\VSSDK\2022"
-xcopy /e /y /c /i "x64\*.*"      "x64_bak\" 
-rd /S /Q x64
-rename  x64_bak x64
+xcopy /e /y /c /i "%BuildPlatform%\*.*"      "%BuildPlatform%_bak\" 
+rd /S /Q %BuildPlatform%
+rename  %BuildPlatform%_bak %BuildPlatform%
