@@ -7,6 +7,8 @@ if not exist %VSSDK%\lib\pkgconfig (
 )
 
 copy /Y %VSSDK%\lib\libexpat.a       %VSSDK%\lib\libexpat.lib
+copy /Y %VSSDK%\lib\libexpat.a       %VSSDK%\lib\expat.lib
 copy /Y %VSSDK%\lib\libfontconfig.a  %VSSDK%\lib\libfontconfig.lib
 copy /Y %VSSDK%\lib\libfontconfig.a  %VSSDK%\lib\fontconfig.lib
 copy /Y %VSSDK%\lib\libfreetype.a    %VSSDK%\lib\libfreetype.lib
+copy /Y %VSSDK%\lib\libfreetype.a    %VSSDK%\lib\freetype.lib
