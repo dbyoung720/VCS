@@ -13,7 +13,7 @@ set LibraryType=shared
 if %BuildPlatform%==x86 (
 	set "USEGPU= -DCPU_ONLY=ON -DWITH_CUDA=OFF -DVTK_USE_CUDA=OFF "
 ) else (
-	set "USEGPU= -DCPU_ONLY=OFF -DWITH_CUDA=ON -DVTK_USE_CUDA=ON  "
+	set "USEGPU= -DCPU_ONLY=OFF -DWITH_CUDA=ON -DVTK_USE_CUDA=ON -DCUDA_ARCH_BIN=6.0;7.0;7.5;8.0;8.6;8.9;9.0 "
 )
 
 :: À©Õ¹¿âÂ·¾¶
@@ -36,16 +36,16 @@ if %LibraryType%==static (
 	set Temp05=-DBUILD_STATIC=ON
 	set Temp06=-DBUILD_STATIC=OFF
 	set Temp07=-DBUILD_TESTING=OFF
-	set Temp08=-DBUILD_TESTING=ON
+	set Temp08=-DBUILD_TESTING=OFF
 	set Temp09=-DBUILD_TESTS=OFF
-	set Temp10=-DBUILD_TESTS=ON
+	set Temp10=-DBUILD_TESTS=OFF
 	set Temp11=-DBUILD_EXAMPLES=OFF
-	set Temp12=-DBUILD_EXAMPLES=ON
+	set Temp12=-DBUILD_EXAMPLES=OFF
 	set Dpara=''
 	for /f "tokens=*" %%f in ('powershell -command "'%Bpara%' -replace '%Temp01%', '%Temp02%' -replace '%Temp03%', '%Temp04%' -replace '%Temp05%', '%Temp06%' -replace '%Temp07%', '%Temp08%' -replace '%Temp09%', '%Temp10%' -replace '%Temp11%', '%Temp12%' "') do (
 		set Dpara=%%f
 	)
-	set Bpara=Dpara
+	set Bpara=%Dpara%
 )
 
 :: ±àÒëÄ¿Â¼
@@ -56,7 +56,7 @@ if exist %opencvBuildPath% (
 
 :: ±àÒë
 CMake %Bpara% ^
-  -DOPENCV_EXTRA_MODULES_PATH=%opencv_contribX% %USEGPU% -DOPENCV_ENABLE_NONFREE=ON -DWITH_JULIA=ON -DHAVE_JULIA=ON -DBUILD_opencv_world=OFF -DCMAKE_INSTALL_PREFIX=%InstallSDKPath% -Thost=%Platform1% -A %Platform2% -B "%opencvBuildPath%" -G "%BuildLanguage%" -S "%SourcePath%"
+  -DOPENCV_EXTRA_MODULES_PATH=%opencv_contribX% %USEGPU% -DOPENCV_ENABLE_NONFREE=ON -DWITH_JULIA=OFF -DHAVE_JULIA=OFF -DBUILD_opencv_world=OFF -DCMAKE_INSTALL_PREFIX=%InstallSDKPath% -Thost=%Platform1% -A %Platform2% -B "%opencvBuildPath%" -G "%BuildLanguage%" -S "%SourcePath%"
 CMake %opencvBuildPath%
 Call %BuildRootPath%src\vcm.cmd %BuildRootPath% %opencvBuildPath% %SourceCodeName% %Platform2%
 CMake --build %opencvBuildPath% --config Release --target install
