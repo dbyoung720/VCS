@@ -1,9 +1,9 @@
- amrnb/libopencore-amrnb.vcxproj | 15 +++++++++------
- amrwb/libopencore-amrwb.vcxproj | 15 +++++++++------
- 2 files changed, 18 insertions(+), 12 deletions(-)
+ amrnb/libopencore-amrnb.vcxproj | 13 +++++++------
+ amrwb/libopencore-amrwb.vcxproj | 13 +++++++------
+ 2 files changed, 14 insertions(+), 12 deletions(-)
 
 diff --git a/amrnb/libopencore-amrnb.vcxproj b/amrnb/libopencore-amrnb.vcxproj
-index b4b9b31..ee87a28 100644
+index b4b9b31..f7d49ca 100644
 --- a/amrnb/libopencore-amrnb.vcxproj
 +++ b/amrnb/libopencore-amrnb.vcxproj
 @@ -293,32 +293,32 @@
@@ -44,21 +44,19 @@ index b4b9b31..ee87a28 100644
      <WholeProgramOptimization>true</WholeProgramOptimization>
      <CharacterSet>Unicode</CharacterSet>
    </PropertyGroup>
-@@ -416,8 +416,11 @@
+@@ -416,8 +416,9 @@
        <SDLCheck>true</SDLCheck>
        <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
        <ConformanceMode>true</ConformanceMode>
 -      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeader>NotUsing</PrecompiledHeader>
        <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-+      <DebugInformationFormat>None</DebugInformationFormat>
-+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-+      <AdditionalIncludeDirectories>..\oscl;..\opencore\codecs_v2\audio\gsm_amr\amr_nb\common\include;..\opencore\codecs_v2\audio\gsm_amr\amr_nb\dec\include;..\opencore\codecs_v2\audio\gsm_amr\common\dec\include;..\opencore\codecs_v2\audio\gsm_amr\amr_nb\dec\src;..\opencore\codecs_v2\audio\gsm_amr\amr_nb\enc\src</AdditionalIncludeDirectories>
++      <AdditionalIncludeDirectories>..\oscl;..\opencore\codecs_v2\audio\gsm_amr\amr_nb\common\include;..\opencore\codecs_v2\audio\gsm_amr\amr_nb\dec\include;..\opencore\codecs_v2\audio\gsm_amr\common\dec\include;..\opencore\codecs_v2\audio\gsm_amr\amr_nb\dec\src;..\opencore\codecs_v2\audio\gsm_amr\amr_nb\enc\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
      </ClCompile>
      <Link>
        <SubSystem>
 diff --git a/amrwb/libopencore-amrwb.vcxproj b/amrwb/libopencore-amrwb.vcxproj
-index e5d67ca..15a7292 100644
+index e5d67ca..dbeeb33 100644
 --- a/amrwb/libopencore-amrwb.vcxproj
 +++ b/amrwb/libopencore-amrwb.vcxproj
 @@ -86,32 +86,32 @@
@@ -99,16 +97,14 @@ index e5d67ca..15a7292 100644
      <WholeProgramOptimization>true</WholeProgramOptimization>
      <CharacterSet>Unicode</CharacterSet>
    </PropertyGroup>
-@@ -206,8 +206,11 @@
+@@ -206,8 +206,9 @@
        <SDLCheck>true</SDLCheck>
        <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
        <ConformanceMode>true</ConformanceMode>
 -      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeader>NotUsing</PrecompiledHeader>
        <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-+      <DebugInformationFormat>None</DebugInformationFormat>
-+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-+      <AdditionalIncludeDirectories>..\oscl;..\opencore\codecs_v2\audio\gsm_amr\amr_nb\common\include;..\opencore\codecs_v2\audio\gsm_amr\amr_wb\dec\include;..\opencore\codecs_v2\audio\gsm_amr\common\dec\include</AdditionalIncludeDirectories>
++      <AdditionalIncludeDirectories>..\oscl;..\opencore\codecs_v2\audio\gsm_amr\amr_wb\dec\include;..\opencore\codecs_v2\audio\gsm_amr\common\dec\include</AdditionalIncludeDirectories>
      </ClCompile>
      <Link>
        <SubSystem>
