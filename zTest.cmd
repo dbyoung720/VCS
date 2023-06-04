@@ -64,7 +64,7 @@ call vcs Vulkan-Loader    %platform%
 call vcs AviSynth-Headers %platform%
 call vcs SPIRV-Headers    %platform%
 call vcs SPIRV-Cross      %platform%
-rem call vcs SPIRV-Tools      %platform%
+call vcs SPIRV-Tools      %platform%
 call vcs glslang          %platform%
 call vcs x264     %platform%
 call vcs x265     %platform%
@@ -81,6 +81,7 @@ call vcs AOM      %platform%
 call vcs frei0r   %platform%
 
 :: ”Ô—‘¿‡
+call vcs llvm      %platform%
 call vcs ispc      %platform%
 call vcs ccache    %platform%
 call vcs leveldb   %platform%
@@ -88,7 +89,6 @@ call vcs lmdb      %platform%
 call vcs hdf5      %platform%
 call vcs boost     %platform%
 call vcs sqlite3   %platform%
-call vcs llvm      %platform%
 call vcs QT5       %platform%
 call vcs VTK       %platform%
 call vcs opencv    %platform%
