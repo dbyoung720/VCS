@@ -112,4 +112,4 @@ endif()
 configure_file(libass.pc.in libass.pc @ONLY)
 install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/libass.pc
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
