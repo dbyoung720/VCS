@@ -81,7 +81,7 @@ index 2a1ae68b..0d774682 100644
  set(the_description "Hierarchical Data Format I/O")
  ocv_define_module(hdf opencv_core WRAP python)
 -ocv_target_link_libraries(${the_module} ${HDF5_LIBRARIES})
-+ocv_target_link_libraries(${the_module} ${HDF5_LIBRARIES} zlib.lib)
++ocv_target_link_libraries(${the_module} ${HDF5_LIBRARIES} zlib.lib shlwapi.lib)
  ocv_include_directories(${HDF5_INCLUDE_DIRS})
 diff --git a/modules/julia/CMakeLists.txt b/modules/julia/CMakeLists.txt
 index fcf380d7..38c4ea07 100644
