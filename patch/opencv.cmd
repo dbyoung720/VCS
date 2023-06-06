@@ -8,25 +8,28 @@ set VCProjectNameX=%4
 
 :: 编译类型 
 set LibraryType=static
+set BuildDLLGPU=1
 
 :: 编译 CPU/GPU 版本
+set BuildCPUGPU=CPU
 if %BuildPlatform%==x86 (
 	set "USEGPU= -DCPU_ONLY=ON -DWITH_CUDA=OFF -DVTK_USE_CUDA=OFF "
+	set BuildCPUGPU=CPU
 ) else (
-	set "USEGPU= -DCPU_ONLY=OFF -DWITH_CUDA=ON -DVTK_USE_CUDA=ON -DCUDA_ARCH_BIN=6.0;7.0;7.5;8.0;8.6;8.9;9.0 "
+	if %BuildDLLGPU%==1 (
+		set "USEGPU= -DCPU_ONLY=OFF -DWITH_CUDA=ON -DVTK_USE_CUDA=ON -DCUDA_ARCH_BIN=6.0;7.0;7.5;8.0;8.6;8.9;9.0 "
+		set BuildCPUGPU=GPU
+	) else (
+		set "USEGPU= -DCPU_ONLY=ON -DWITH_CUDA=OFF -DVTK_USE_CUDA=OFF "
+		set BuildCPUGPU=CPU
+	)
 )
-
-:: 扩展库路径
-set opencv_contribX=%DriverPath%\opencv_contrib\modules
-CD /D "%opencv_contribX%"
-git apply --ignore-space-change --ignore-whitespace -v %RootPath%patch\opencv_contrib.patch
-set opencv_contribX=%opencv_contribX:\=/%
 
 :: 设置安装路径
 if %LibraryType%==static (
   set InstallSDKPath=%VSSDK%
 ) else (
-  set InstallSDKPath=%VSSDK%\opencv
+  set InstallSDKPath=%VSSDK%\opencv\shared\%BuildCPUGPU%
   
 	:: 字符串搜索替换，修改为编译动态库类型
 	set Temp01=-DBUILD_SHARED=OFF
@@ -36,11 +39,11 @@ if %LibraryType%==static (
 	set Temp05=-DBUILD_STATIC=ON
 	set Temp06=-DBUILD_STATIC=OFF
 	set Temp07=-DBUILD_TESTING=OFF
-	set Temp08=-DBUILD_TESTING=OFF
+	set Temp08=-DBUILD_TESTING=ON
 	set Temp09=-DBUILD_TESTS=OFF
-	set Temp10=-DBUILD_TESTS=OFF
+	set Temp10=-DBUILD_TESTS=ON
 	set Temp11=-DBUILD_EXAMPLES=OFF
-	set Temp12=-DBUILD_EXAMPLES=OFF
+	set Temp12=-DBUILD_EXAMPLES=ON
 	set Dpara=''
 	for /f "tokens=*" %%f in ('powershell -command "'%Bpara%' -replace '%Temp01%', '%Temp02%' -replace '%Temp03%', '%Temp04%' -replace '%Temp05%', '%Temp06%' -replace '%Temp07%', '%Temp08%' -replace '%Temp09%', '%Temp10%' -replace '%Temp11%', '%Temp12%' "') do (
 		set Dpara=%%f
@@ -48,15 +51,21 @@ if %LibraryType%==static (
 	set Bpara=%Dpara%
 )
 
+:: 扩展库路径
+set opencv_contribX=%DriverPath%\opencv_contrib\modules
+CD /D "%opencv_contribX%"
+git apply --ignore-space-change --ignore-whitespace -v %RootPath%patch\opencv_contrib.patch
+set opencv_contribX=%opencv_contribX:\=/%
+
 :: 编译目录
-set opencvBuildPath=%BuildPathX%\%LibraryType%
+set opencvBuildPath=%BuildPathX%_%LibraryType%\%BuildCPUGPU%
 if exist %opencvBuildPath% (
   RD /Q /S %opencvBuildPath%
 )
 
 :: 编译
 CMake %Bpara% ^
-  -DOPENCV_EXTRA_MODULES_PATH=%opencv_contribX% %USEGPU% -DOPENCV_ENABLE_NONFREE=ON -DWITH_JULIA=OFF -DHAVE_JULIA=OFF -DBUILD_opencv_world=OFF -DCMAKE_INSTALL_PREFIX=%InstallSDKPath% -Thost=%Platform1% -A %Platform2% -B "%opencvBuildPath%" -G "%BuildLanguage%" -S "%SourcePath%"
+  -DOPENCV_EXTRA_MODULES_PATH=%opencv_contribX% %USEGPU% -DENABLE_CCACHE=ON -DOPENCV_ENABLE_NONFREE=ON -DWITH_VTK=OFF -DWITH_QT=OFF -DWITH_JULIA=OFF -DHAVE_JULIA=OFF -DBUILD_opencv_world=OFF -DCMAKE_INSTALL_PREFIX=%InstallSDKPath% -Thost=%Platform1% -A %Platform2% -B "%opencvBuildPath%" -G "%BuildLanguage%" -S "%SourcePath%"
 CMake %opencvBuildPath%
 Call %BuildRootPath%src\vcm.cmd %BuildRootPath% %opencvBuildPath% %SourceCodeName% %Platform2%
 CMake --build %opencvBuildPath% --config Release --target install
