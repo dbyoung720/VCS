@@ -13,7 +13,7 @@ set ProjName=%CodeName%
 @echo ±‡“Î %CodeName%
 title ±‡“Î %CodeName%
 
-:: µ•∂¿±‡“Î
+:: µ•∂¿±‡“Î lapack/openblas
 if exist %RootPath%\single\%CodeName%.cmd (
   call %RootPath%\single\%CodeName%.cmd %Platform% %RootPath%VSBuild %RootPath%VSSDK\2022\%Platform% F:\Source\%CodeName%
   goto bEnd
