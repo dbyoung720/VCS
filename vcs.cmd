@@ -13,6 +13,12 @@ set ProjName=%CodeName%
 @echo 编译 %CodeName%
 title 编译 %CodeName%
 
+:: 单独编译
+if exist %RootPath%\single\%CodeName%.cmd (
+  call %RootPath%\single\%CodeName%.cmd %Platform% %RootPath%VSBuild %RootPath%VSSDK\2022\%Platform% F:\Source\%CodeName%
+  goto bEnd
+)
+
 :: 设置环境变量
 call %RootPath%src\env.cmd %RootPath% %Platform% %CodeName%
 
@@ -59,6 +65,7 @@ if exist "%SourcePath%\.svn\" (
   svn revert  --recursive .
 )
 
+:bEnd
 :: 回到 vcs 目录
 CD /D %RootPath%
 CLS
