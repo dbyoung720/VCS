@@ -22,7 +22,7 @@ if %V8EngineEnable%==true (
 	set V8Path=NoV8
 )
 
-:: 编译为动态库、静态库
+:: 编译为动态库还是静态库
 set isDLL=false
 if %isDLL%==true (
 	set LibraryPath=shared
