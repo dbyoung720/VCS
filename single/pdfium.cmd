@@ -12,7 +12,7 @@ set DEPOT_TOOLS_WIN_TOOLCHAIN=0
 set GYP_MSVS_VERSION=2022
 SET PARAMS=-property installationPath -requires Microsoft.Component.MSBuild Microsoft.VisualStudio.Component.VC.ATLMFC Microsoft.VisualStudio.Component.VC.Tools.x86.x64  -latest -prerelease -version [,17.0)
 set "VS2022=vswhere.exe %PARAMS%"
-FOR /f "delims=" %%A IN ('!VS2022!') DO SET GYP_MSVS_OVERRIDE_PATH=%%A
+FOR /f "delims=" %%A IN ('!VS2022!') DO SET "GYP_MSVS_OVERRIDE_PATH=%%A"
 
 ::  «∑Ò±‡“Î V8 Engine
 set V8EngineEnable=false
