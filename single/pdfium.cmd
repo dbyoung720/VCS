@@ -6,6 +6,7 @@ set VSInstallSDKX=%3
 set PDFiumSrcPath=%4
 set BuildRootPath=%5
 
+:: 环境变量
 set Path=%DriverPath%\depot_tools;%Path%
 set DEPOT_TOOLS_WIN_TOOLCHAIN=0
 set GYP_MSVS_VERSION=2022
@@ -57,6 +58,7 @@ if not exist "%BuildingPathX%\PDFium\%BuildPlatform%\%V8Path%\%LibraryPath%" (
   md %LibraryPath%
 )
 
+:: 编译参数配置
 echo ++++++++++++++   开始写入配置文件    ++++++++++++++
 (
 	echo # 是否启用 goma 支持
@@ -86,17 +88,12 @@ echo ++++++++++++++   开始写入配置文件    ++++++++++++++
 )>%BuildPDFiumPath%\args.gn
 echo ++++++++++++++   配置文件写入完成    ++++++++++++++
 
+:: 编译
 CD /D %PDFiumSrcPath%
-
 call gn gen --ide=vs %BuildPDFiumPath%
-
-:: 修改 MD 编译为 MT
 call %BuildRootPath%Tools\vmt '%BuildPDFiumPath%','*.ninja',' /MD',' /MT','',1,1,'ASCII'
 call %BuildRootPath%Tools\vmt '%BuildPDFiumPath%'
-
-:: 修改 不显示 showIncludes，和关闭 C4506 警告
 call %BuildRootPath%Tools\vmt '%BuildPDFiumPath%','toolchain.ninja','/showIncludes','/wd4506','',0,0,'ASCII'
-
 rem call ninja -C %BuildPDFiumPath% pdfium
 rem call ninja -C %BuildPDFiumPath% pdfium_test
 call ninja -C %BuildPDFiumPath% pdfium_all
