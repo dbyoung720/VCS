@@ -32,11 +32,6 @@ set PYTHON3_EXECUTABLE=%ScoopDir%\apps\python39\current\Python.exe
 set EMSCRIPTEN_ROOT=%ScoopDir%\apps\emscripten\current
 set Julia_EXECUTABLE=%ScoopDir%\apps\julia\current\bin\julia.exe
 
-:: 设置源码保存路径
-set "DriverPath=F:\Source"
-set "SourcePath=%DriverPath%\%CodeName%"
-set "InvSourcePath=%SourcePath:\=/%"
-
 :: 源代码是否存在
 set "CodeConfig=%RootPath%patch\%CodeName%.ini"
 if exist %CodeConfig% (

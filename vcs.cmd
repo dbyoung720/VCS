@@ -13,9 +13,14 @@ set ProjName=%CodeName%
 @echo ±‡“Î %CodeName%
 title ±‡“Î %CodeName%
 
+:: …Ë÷√‘¥¬Î±£¥Ê¬∑æ∂
+set "DriverPath=F:\Source"
+set "SourcePath=%DriverPath%\%CodeName%"
+set "InvSourcePath=%SourcePath:\=/%"
+
 :: µ•∂¿±‡“Î lapack/openblas
-if exist %RootPath%\single\%CodeName%.cmd (
-  call %RootPath%\single\%CodeName%.cmd %Platform% %RootPath%VSBuild %RootPath%VSSDK\2022\%Platform% F:\Source\%CodeName%
+if exist %RootPath%single\%CodeName%.cmd (
+  call %RootPath%single\%CodeName%.cmd %Platform% %RootPath%VSBuild %RootPath%VSSDK\2022\%Platform% %SourcePath% %RootPath%
   goto bEnd
 )
 
