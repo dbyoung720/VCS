@@ -8,7 +8,7 @@ set VCProjectNameX=%4
 
 :: ±‡“Î¿‡–Õ 
 set LibraryType=static
-set BuildDLLGPU=1
+set BuildDLLGPU=0
 
 :: ±‡“Î CPU/GPU ∞Ê±æ
 set BuildCPUGPU=CPU

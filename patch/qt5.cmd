@@ -14,7 +14,7 @@ if %LibraryType%==static (
 )
 
 :: 排除影响
-CD /D "%BuildRootPath%\VSSDK\2022"
+CD /D "%BuildRootPath%VSSDK\2022"
 rename %BuildPlatform% %BuildPlatform%_bak
 
 :: 设置 pkgconfig 目录
@@ -37,7 +37,7 @@ call jom
 call jom install
 
 :: 恢复目录
-CD /D "%BuildRootPath%\VSSDK\2022"
+CD /D "%BuildRootPath%VSSDK\2022"
 xcopy /e /y /c /i "%BuildPlatform%\*.*"      "%BuildPlatform%_bak\" 
 rd /S /Q %BuildPlatform%
 rename  %BuildPlatform%_bak %BuildPlatform%
