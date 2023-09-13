@@ -17,6 +17,7 @@ MSBuild.exe %SourcePath%\opencore-amr-win.sln /nologo /consoleloggerparameters:V
 :: 检查 VC 编译是否有错误
 if %errorlevel% NEQ 0 (
   echo 编译出现错误，停止编译。用 VS2022 打开，可自行修改。
+  pause
   call "%SourcePath%\opencore-amr-win.sln"
 )
 
