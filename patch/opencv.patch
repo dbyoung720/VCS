@@ -2,26 +2,27 @@
  3rdparty/libtiff/tif_zip.c       |  6 +++---
  apps/CMakeLists.txt              |  2 +-
  cmake/OpenCVCRTLinkage.cmake     | 30 +++++++++++++++---------------
+ cmake/OpenCVDetectPython.cmake   | 14 +++++++-------
  cmake/OpenCVDetectVTK.cmake      | 14 +++++++-------
  cmake/OpenCVFindFrameworks.cmake | 32 ++++++++++++++++----------------
  modules/core/src/system.cpp      | 36 ++++++++++++++++++------------------
  modules/highgui/CMakeLists.txt   |  3 ++-
  modules/imgcodecs/CMakeLists.txt |  3 ++-
- 9 files changed, 65 insertions(+), 63 deletions(-)
+ 10 files changed, 72 insertions(+), 70 deletions(-)
 
 diff --git a/3rdparty/libtiff/CMakeLists.txt b/3rdparty/libtiff/CMakeLists.txt
-index 826c5e2316..3f9612e24b 100644
+index 826c5e2316..ed0693c879 100644
 --- a/3rdparty/libtiff/CMakeLists.txt
 +++ b/3rdparty/libtiff/CMakeLists.txt
-@@ -465,7 +465,7 @@ ocv_warnings_disable(CMAKE_CXX_FLAGS /wd4267 /wd4305 /wd4306) # vs2008 Win64
+@@ -463,7 +463,7 @@ ocv_warnings_disable(CMAKE_CXX_FLAGS /wd4018 /wd4100 /wd4127 /wd4311 /wd4701 /wd
+ ocv_warnings_disable(CMAKE_CXX_FLAGS /wd4244) # vs2008
+ ocv_warnings_disable(CMAKE_CXX_FLAGS /wd4267 /wd4305 /wd4306) # vs2008 Win64
  ocv_warnings_disable(CMAKE_CXX_FLAGS /wd4703) # vs2012
- ocv_warnings_disable(CMAKE_CXX_FLAGS /wd4456 /wd4457 /wd4312) # vs2015
+-ocv_warnings_disable(CMAKE_CXX_FLAGS /wd4456 /wd4457 /wd4312) # vs2015
++ocv_warnings_disable(CMAKE_CXX_FLAGS /wd4456 /wd4457 /wd4312 /wd4430) # vs2015
  
--ocv_warnings_disable(CMAKE_C_FLAGS /wd4267 /wd4244 /wd4018 /wd4311 /wd4312)
-+ocv_warnings_disable(CMAKE_C_FLAGS /wd4267 /wd4244 /wd4018 /wd4311 /wd4312 /wd4430)
+ ocv_warnings_disable(CMAKE_C_FLAGS /wd4267 /wd4244 /wd4018 /wd4311 /wd4312)
  
- add_library(${TIFF_LIBRARY} STATIC ${OPENCV_3RDPARTY_EXCLUDE_FROM_ALL} ${lib_srcs})
- target_link_libraries(${TIFF_LIBRARY} ${ZLIB_LIBRARIES})
 diff --git a/3rdparty/libtiff/tif_zip.c b/3rdparty/libtiff/tif_zip.c
 index e71c312c80..7d7621181d 100644
 --- a/3rdparty/libtiff/tif_zip.c
@@ -40,18 +41,18 @@ index e71c312c80..7d7621181d 100644
  	}
  
 diff --git a/apps/CMakeLists.txt b/apps/CMakeLists.txt
-index e9a7be7c66..2b86bc14c7 100644
+index e9a7be7c66..f3d24a66e1 100644
 --- a/apps/CMakeLists.txt
 +++ b/apps/CMakeLists.txt
-@@ -16,7 +16,7 @@ function(ocv_add_application the_target)
-   ocv_target_include_modules_recurse(${the_target} ${APP_MODULES})
+@@ -13,7 +13,7 @@ function(ocv_add_application the_target)
+   endif()
+ 
+   project(${the_target})
+-  ocv_target_include_modules_recurse(${the_target} ${APP_MODULES})
++  ocv_target_include_modules_recurse(${the_target} ${APP_MODULES} winmm version Netapi32 Userenv zstd zlib libmfx)
    ocv_target_include_directories(${the_target} PRIVATE "${OpenCV_SOURCE_DIR}/include/opencv")
    ocv_add_executable(${the_target} ${APP_SRCS})
--  ocv_target_link_libraries(${the_target} ${APP_MODULES})
-+  ocv_target_link_libraries(${the_target} ${APP_MODULES} winmm version Netapi32 Userenv zstd zlib libmfx)
-   set_target_properties(${the_target} PROPERTIES
-                         DEBUG_POSTFIX "${OPENCV_DEBUG_POSTFIX}"
-                         ARCHIVE_OUTPUT_DIRECTORY ${LIBRARY_OUTPUT_PATH}
+   ocv_target_link_libraries(${the_target} ${APP_MODULES})
 diff --git a/cmake/OpenCVCRTLinkage.cmake b/cmake/OpenCVCRTLinkage.cmake
 index 0e0a54ecf9..98d0255271 100644
 --- a/cmake/OpenCVCRTLinkage.cmake
@@ -97,6 +98,31 @@ index 0e0a54ecf9..98d0255271 100644
 +#    endif()
 +#  endforeach(flag_var)
 +#endif()
+diff --git a/cmake/OpenCVDetectPython.cmake b/cmake/OpenCVDetectPython.cmake
+index 88a4341856..5a335c6e9f 100644
+--- a/cmake/OpenCVDetectPython.cmake
++++ b/cmake/OpenCVDetectPython.cmake
+@@ -268,13 +268,13 @@ if(OPENCV_PYTHON_SKIP_DETECTION)
+   return()
+ endif()
+ 
+-find_python("" "${MIN_VER_PYTHON2}" PYTHON2_LIBRARY PYTHON2_INCLUDE_DIR
+-    PYTHON2INTERP_FOUND PYTHON2_EXECUTABLE PYTHON2_VERSION_STRING
+-    PYTHON2_VERSION_MAJOR PYTHON2_VERSION_MINOR PYTHON2LIBS_FOUND
+-    PYTHON2LIBS_VERSION_STRING PYTHON2_LIBRARIES PYTHON2_LIBRARY
+-    PYTHON2_DEBUG_LIBRARIES PYTHON2_LIBRARY_DEBUG PYTHON2_INCLUDE_PATH
+-    PYTHON2_INCLUDE_DIR PYTHON2_INCLUDE_DIR2 PYTHON2_PACKAGES_PATH
+-    PYTHON2_NUMPY_INCLUDE_DIRS PYTHON2_NUMPY_VERSION)
++#find_python("" "${MIN_VER_PYTHON2}" PYTHON2_LIBRARY PYTHON2_INCLUDE_DIR
++#    PYTHON2INTERP_FOUND PYTHON2_EXECUTABLE PYTHON2_VERSION_STRING
++#    PYTHON2_VERSION_MAJOR PYTHON2_VERSION_MINOR PYTHON2LIBS_FOUND
++#    PYTHON2LIBS_VERSION_STRING PYTHON2_LIBRARIES PYTHON2_LIBRARY
++#    PYTHON2_DEBUG_LIBRARIES PYTHON2_LIBRARY_DEBUG PYTHON2_INCLUDE_PATH
++#    PYTHON2_INCLUDE_DIR PYTHON2_INCLUDE_DIR2 PYTHON2_PACKAGES_PATH
++#    PYTHON2_NUMPY_INCLUDE_DIRS PYTHON2_NUMPY_VERSION)
+ 
+ option(OPENCV_PYTHON3_VERSION "Python3 version" "")
+ find_python("${OPENCV_PYTHON3_VERSION}" "${MIN_VER_PYTHON3}" PYTHON3_LIBRARY PYTHON3_INCLUDE_DIR
 diff --git a/cmake/OpenCVDetectVTK.cmake b/cmake/OpenCVDetectVTK.cmake
 index 312fd41fe4..d85591379b 100644
 --- a/cmake/OpenCVDetectVTK.cmake
@@ -123,7 +149,7 @@ index 312fd41fe4..d85591379b 100644
  if(NOT ${VTK_COMPILE_STATUS})
    message(STATUS "VTK support is disabled. Compilation of the sample code has failed.")
 diff --git a/cmake/OpenCVFindFrameworks.cmake b/cmake/OpenCVFindFrameworks.cmake
-index 741267d269..cb75dec4b5 100644
+index 741267d269..bf5b9eeb97 100644
 --- a/cmake/OpenCVFindFrameworks.cmake
 +++ b/cmake/OpenCVFindFrameworks.cmake
 @@ -27,21 +27,21 @@ else()
@@ -165,10 +191,10 @@ index 741267d269..cb75dec4b5 100644
 -endif()
 +#endif()
 diff --git a/modules/core/src/system.cpp b/modules/core/src/system.cpp
-index d4fdbf05ee..439549e72b 100644
+index 44e1e04a03..16fdd86643 100644
 --- a/modules/core/src/system.cpp
 +++ b/modules/core/src/system.cpp
-@@ -2125,27 +2125,27 @@ CoreTLSData& getCoreTlsData()
+@@ -2110,27 +2110,27 @@ CoreTLSData& getCoreTlsData()
      #pragma warning(disable:4447) // Disable warning 'main' signature found without threading model
  #endif
  
@@ -236,10 +262,10 @@ index d8a7bb050a..97ffab2455 100644
  
  ocv_warnings_disable(CMAKE_CXX_FLAGS -Wno-deprecated-declarations)
 diff --git a/modules/imgcodecs/CMakeLists.txt b/modules/imgcodecs/CMakeLists.txt
-index 1572543aff..1ea4b8f945 100644
+index 8183837c43..ac4b30f7da 100644
 --- a/modules/imgcodecs/CMakeLists.txt
 +++ b/modules/imgcodecs/CMakeLists.txt
-@@ -159,6 +159,7 @@ source_group("Src" FILES ${imgcodecs_srcs} ${imgcodecs_hdrs})
+@@ -164,6 +164,7 @@ source_group("Src" FILES ${imgcodecs_srcs} ${imgcodecs_hdrs})
  source_group("Include" FILES ${imgcodecs_ext_hdrs})
  ocv_set_module_sources(HEADERS ${imgcodecs_ext_hdrs} SOURCES ${imgcodecs_srcs} ${imgcodecs_hdrs} ${grfmt_srcs} ${grfmt_hdrs})
  ocv_module_include_directories()
@@ -247,7 +273,7 @@ index 1572543aff..1ea4b8f945 100644
  
  ocv_create_module(${GRFMT_LIBS} ${IMGCODECS_LIBRARIES})
  
-@@ -168,7 +169,7 @@ if(APPLE)
+@@ -173,7 +174,7 @@ if(APPLE)
  endif()
  
  if(MSVC AND NOT BUILD_SHARED_LIBS AND BUILD_WITH_STATIC_CRT)

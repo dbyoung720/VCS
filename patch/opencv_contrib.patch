@@ -1,14 +1,14 @@
- modules/freetype/CMakeLists.txt | 36 +++++++++++++++++++-------------
- modules/hdf/CMakeLists.txt      |  8 +++----
- modules/julia/CMakeLists.txt    | 18 ++++++++--------
- modules/text/cmake/init.cmake   | 46 +++++++++++++++++++++++++++--------------
- 4 files changed, 65 insertions(+), 43 deletions(-)
+ modules/freetype/CMakeLists.txt | 35 +++++++++++++++++++-------------
+ modules/hdf/CMakeLists.txt      | 45 ++++++++++++++++++++++-------------------
+ modules/julia/CMakeLists.txt    | 18 ++++++++---------
+ modules/text/cmake/init.cmake   | 33 +++++++++++++++---------------
+ 4 files changed, 71 insertions(+), 60 deletions(-)
 
 diff --git a/modules/freetype/CMakeLists.txt b/modules/freetype/CMakeLists.txt
-index 6dd4aaf9..50e63839 100644
+index 6dd4aaf9..5b234707 100644
 --- a/modules/freetype/CMakeLists.txt
 +++ b/modules/freetype/CMakeLists.txt
-@@ -3,22 +3,30 @@ if(APPLE_FRAMEWORK)
+@@ -3,22 +3,29 @@ if(APPLE_FRAMEWORK)
    ocv_module_disable(freetype)
  endif()
  
@@ -29,7 +29,13 @@ index 6dd4aaf9..50e63839 100644
 +#  else()
 +#    message(STATUS "freetype2:   YES (ver ${FREETYPE_VERSION})")
 +#  endif()
-+
+ 
+-  if(NOT HARFBUZZ_FOUND)
+-    message(STATUS "harfbuzz:    NO")
+-  else()
+-    message(STATUS "harfbuzz:    YES (ver ${HARFBUZZ_VERSION})")
+-  endif()
+-endif()
 +#  if(NOT HARFBUZZ_FOUND)
 +#    message(STATUS "harfbuzz:    NO")
 +#  else()
@@ -39,50 +45,72 @@ index 6dd4aaf9..50e63839 100644
 +
 +set(FREETYPE_FOUND 1)
 +set(HARFBUZZ_FOUND 1)
-+set(FREETYPE_INCLUDE_DIRS "F:/Green/Language/vcs/VSSDK/2022/x64/include/freetype2")
++set(FREETYPE_INCLUDE_DIRS "F:/Green/Language/vcs/VSSDK/2022/x86/include/freetype2")
 +set(FREETYPE_LIBRARIES "freetype.lib;zlib.lib;zstd.lib;lzma.lib;libpng.lib;bzip2.lib;brotliCommon.lib;brotlidec.lib;brotlicommon.lib")
-+set(HARFBUZZ_INCLUDE_DIRS "F:/Green/Language/vcs/VSSDK/2022/x64/include/harfbuzz")
-+set(HARFBUZZ_LIBRARIES "libharfbuzz.lib;libharfbuzz-subset.lib")
- 
--  if(NOT HARFBUZZ_FOUND)
--    message(STATUS "harfbuzz:    NO")
--  else()
--    message(STATUS "harfbuzz:    YES (ver ${HARFBUZZ_VERSION})")
--  endif()
--endif()
++set(HARFBUZZ_INCLUDE_DIRS "F:/Green/Language/vcs/VSSDK/2022/x86/include/harfbuzz")
++set(HARFBUZZ_LIBRARIES "harfbuzz.lib;harfbuzz-subset.lib")
  
  if(FREETYPE_FOUND AND HARFBUZZ_FOUND)
    ocv_define_module(freetype opencv_core opencv_imgproc WRAP python)
 diff --git a/modules/hdf/CMakeLists.txt b/modules/hdf/CMakeLists.txt
-index 2a1ae68b..0d774682 100644
+index 2a1ae68b..ec8f7d3a 100644
 --- a/modules/hdf/CMakeLists.txt
 +++ b/modules/hdf/CMakeLists.txt
-@@ -3,15 +3,15 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR})
- if(WIN32)
+@@ -1,30 +1,33 @@
+ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR})
+ 
+-if(WIN32)
++#if(WIN32)
    # windows cmake internal lookups are broken for now
    # will lookup for headers and shared libs given HDF_DIR env
 -  find_path(HDF5_INCLUDE_DIRS hdf5.h HINTS "$ENV{HDF5_DIR}\\..\\include")
 -  find_library(HDF5_C_LIBRARY NAMES hdf5 HINTS "$ENV{HDF5_DIR}\\..\\lib")
-+  find_path(HDF5_INCLUDE_DIRS hdf5.h HINTS "$ENV{HDF5_DIR}/../../include")
-+  find_library(HDF5_C_LIBRARY NAMES libhdf5 HINTS "$ENV{HDF5_DIR}/../../lib")
-   if(HDF5_INCLUDE_DIRS AND HDF5_C_LIBRARY)
-     set(HDF5_FOUND "YES")
-     set(HDF5_LIBRARIES ${HDF5_C_LIBRARY})
-     mark_as_advanced(HDF5_LIBRARIES)
-     mark_as_advanced(HDF5_C_LIBRARY)
-     mark_as_advanced(HDF5_INCLUDE_DIRS)
+-  if(HDF5_INCLUDE_DIRS AND HDF5_C_LIBRARY)
+-    set(HDF5_FOUND "YES")
+-    set(HDF5_LIBRARIES ${HDF5_C_LIBRARY})
+-    mark_as_advanced(HDF5_LIBRARIES)
+-    mark_as_advanced(HDF5_C_LIBRARY)
+-    mark_as_advanced(HDF5_INCLUDE_DIRS)
 -    add_definitions(-DH5_BUILT_AS_DYNAMIC_LIB -D_HDF5USEDLL_)
+-  else()
+-     set(HDF5_FOUND "NO")
+-  endif()
+-else()
+-  if(NOT CMAKE_CROSSCOMPILING) # iOS build should not reuse OSX package
+-    find_package(HDF5)
+-  endif()
+-endif()
++#  find_path(HDF5_INCLUDE_DIRS hdf5.h HINTS "$ENV{HDF5_DIR}\\..\\include")
++#  find_library(HDF5_C_LIBRARY NAMES hdf5 HINTS "$ENV{HDF5_DIR}\\..\\lib")
++#  if(HDF5_INCLUDE_DIRS AND HDF5_C_LIBRARY)
++#    set(HDF5_FOUND "YES")
++#    set(HDF5_LIBRARIES ${HDF5_C_LIBRARY})
++#    mark_as_advanced(HDF5_LIBRARIES)
++#    mark_as_advanced(HDF5_C_LIBRARY)
++#    mark_as_advanced(HDF5_INCLUDE_DIRS)
 +#    add_definitions(-DH5_BUILT_AS_DYNAMIC_LIB -D_HDF5USEDLL_)
-   else()
-      set(HDF5_FOUND "NO")
-   endif()
-@@ -31,5 +31,5 @@ ocv_warnings_disable(CMAKE_CXX_FLAGS -Winvalid-offsetof)
++#  else()
++#     set(HDF5_FOUND "NO")
++#  endif()
++#else()
++#  if(NOT CMAKE_CROSSCOMPILING) # iOS build should not reuse OSX package
++#    find_package(HDF5)
++#  endif()
++#endif()
  
- set(the_description "Hierarchical Data Format I/O")
- ocv_define_module(hdf opencv_core WRAP python)
--ocv_target_link_libraries(${the_module} ${HDF5_LIBRARIES})
-+ocv_target_link_libraries(${the_module} ${HDF5_LIBRARIES} zlib.lib shlwapi.lib)
- ocv_include_directories(${HDF5_INCLUDE_DIRS})
+-if(NOT HDF5_FOUND)
+-    ocv_module_disable(hdf) # no return
+-endif()
++#if(NOT HDF5_FOUND)
++#    ocv_module_disable(hdf) # no return
++#endif()
+ 
++set(HDF5_INCLUDE_DIRS "F:/Green/Language/vcs/VSSDK/2022/x86/include")
++set(HDF5_C_LIBRARY "libhdf5.lib;libhdf5_hl.lib;libhdf5_tools.lib;zlib.lib;Shlwapi.lib")
++set(HDF5_LIBRARIES ${HDF5_C_LIBRARY})
+ set(HAVE_HDF5 1)
+ 
+ ocv_warnings_disable(CMAKE_CXX_FLAGS -Winvalid-offsetof)
 diff --git a/modules/julia/CMakeLists.txt b/modules/julia/CMakeLists.txt
 index fcf380d7..38c4ea07 100644
 --- a/modules/julia/CMakeLists.txt
@@ -113,10 +141,10 @@ index fcf380d7..38c4ea07 100644
  if(NOT JlCxx_DIR)
      execute_process(
 diff --git a/modules/text/cmake/init.cmake b/modules/text/cmake/init.cmake
-index 254757ec..e49f6473 100644
+index 254757ec..ff212acb 100644
 --- a/modules/text/cmake/init.cmake
 +++ b/modules/text/cmake/init.cmake
-@@ -16,22 +16,36 @@ if(NOT HAVE_TESSERACT
+@@ -16,22 +16,23 @@ if(NOT HAVE_TESSERACT
      else()
        message(STATUS "Tesseract:   YES (ver unknown)")
      endif()
@@ -136,6 +164,7 @@ index 254757ec..e49f6473 100644
 -        return()
 -      endif()
 -    endif()
++    set(Tesseract_LIBRARIES "tesseract53.lib;zlib.lib;lzma.lib;zstd.lib;libpng.lib;leptonica-1.84.0.lib;jpeg.lib;giflib.lib;archive.lib;bzip2.lib;lz4.lib;libxml2.lib;libwebp.lib;libsharpyuv.lib;tiff.lib;openjp2.lib;libiconv.lib;libcharset.lib")
 +#    if(NOT ENABLE_CXX11 AND NOT OPENCV_SKIP_TESSERACT_BUILD_CHECK)
 +#      try_compile(__VALID_TESSERACT
 +#        "${OpenCV_BINARY_DIR}/cmake_check/tesseract"
@@ -152,20 +181,6 @@ index 254757ec..e49f6473 100644
 +#        return()
 +#      endif()
 +#    endif()
-+    list(APPEND Tesseract_LIBRARIES)
-+    list(APPEND Tesseract_LIBRARIES leptonica-1.84.0)
-+    list(APPEND Tesseract_LIBRARIES opengl32)
-+    list(APPEND Tesseract_LIBRARIES zlib)
-+    list(APPEND Tesseract_LIBRARIES lzma)
-+    list(APPEND Tesseract_LIBRARIES zstd)
-+    list(APPEND Tesseract_LIBRARIES jpeg)
-+    list(APPEND Tesseract_LIBRARIES libtiff)
-+    list(APPEND Tesseract_LIBRARIES libpng)
-+    list(APPEND Tesseract_LIBRARIES opencl)
-+    list(APPEND Tesseract_LIBRARIES libwebp)
-+    list(APPEND Tesseract_LIBRARIES giflib)
-+    list(APPEND Tesseract_LIBRARIES libexpat)
-+    list(APPEND Tesseract_LIBRARIES openjp2)
      set(HAVE_TESSERACT 1)
      set(HAVE_TESSERACT 1)
  

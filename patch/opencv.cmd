@@ -7,8 +7,10 @@ set SourceCodeName=%3
 set VCProjectNameX=%4
 
 :: ±‡“Î¿‡–Õ 
-set LibraryType=static
+set LibraryType=shared
+
 set BuildDLLGPU=0
+set OpenBLAS_HOME=%VSSDK%
 
 :: ±‡“Î CPU/GPU ∞Ê±æ
 set BuildCPUGPU=CPU
@@ -65,7 +67,7 @@ if exist %opencvBuildPath% (
 
 :: ±‡“Î
 CMake %Bpara% ^
-  -DOPENCV_EXTRA_MODULES_PATH=%opencv_contribX% %USEGPU% -DENABLE_CCACHE=ON -DOPENCV_ENABLE_NONFREE=ON -DWITH_VTK=OFF -DWITH_QT=OFF -DWITH_JULIA=OFF -DHAVE_JULIA=OFF -DBUILD_opencv_world=OFF -DCMAKE_INSTALL_PREFIX=%InstallSDKPath% -Thost=%Platform1% -A %Platform2% -B "%opencvBuildPath%" -G "%BuildLanguage%" -S "%SourcePath%"
+  -DOPENCV_EXTRA_MODULES_PATH=%opencv_contribX% %USEGPU% -DMFX_INCLUDE=%VSSDK%/include/mfx -DMFX_LIBRARY=%VSSDK%/lib/libmfx.lib -DENABLE_CCACHE=ON -DOPENCV_ENABLE_NONFREE=ON -DWITH_FREETYPE=ON -DWITH_TBB=ON -DWITH_VTK=OFF -DWITH_QT=OFF -DWITH_JULIA=OFF -DHAVE_JULIA=OFF -DBUILD_opencv_world=OFF -DCMAKE_INSTALL_PREFIX=%InstallSDKPath% -Thost=%Platform1% -A %Platform2% -B "%opencvBuildPath%" -G "%BuildLanguage%" -S "%SourcePath%"
 CMake %opencvBuildPath%
 Call %BuildRootPath%src\vcm.cmd %BuildRootPath% %opencvBuildPath% %SourceCodeName% %Platform2%
 CMake --build %opencvBuildPath% --config Release --target install
