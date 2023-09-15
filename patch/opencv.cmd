@@ -7,7 +7,7 @@ set SourceCodeName=%3
 set VCProjectNameX=%4
 
 :: ±‡“Î¿‡–Õ 
-set LibraryType=shared
+set LibraryType=static
 
 set BuildDLLGPU=0
 set OpenBLAS_HOME=%VSSDK%
