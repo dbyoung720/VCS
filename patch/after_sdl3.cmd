@@ -22,5 +22,5 @@ echo Version: 3.0.0
 echo Requires:
 echo Conflicts:
 echo Libs: -L${libdir}  -lSDL3-static -lkernel32 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lversion -luuid -ladvapi32 -lsetupapi -lshell32 -ldinput8 -lmsvcrt -mwindows
-echo Cflags: -I${includedir} -I${includedir}/sdl3 -I$<BUILD_INTERFACE:F:/Source/SDL3/src/video/khronos> -Dmain=SDL_main /Entry:SDL_main /SUBSYSTEM:CONSOLE
+echo Cflags: -I${includedir} -I${includedir}/sdl3
 )>%VSSDK%\lib\pkgconfig\%CodeName%.pc
