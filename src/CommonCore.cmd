@@ -57,7 +57,7 @@ if exist %CodeConfig% (
 )
 
 CD /D "%BuildPathX%"
-bash -c "CC=cl %InvSourcePath%/configure %AddParam% --disable-shared --enable-static --build=%PlatformMSys2% --host=%PlatformMSys2% --prefix=%InvVSSDK%"
+bash -c "CC=cl %InvSourcePath%/configure %AddParam% --disable-shared --target-os=%Platform6% --enable-static --prefix=%InvVSSDK%"
 bash -c "make -j 16"
 bash -c "make install"
 

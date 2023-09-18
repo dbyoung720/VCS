@@ -123,6 +123,7 @@ if %Platform%==x86 (
   set Platform3=32
   set Platform4=x86
   set Platform5=VC-WIN32
+  set Platform6=win32
   set PlatformMSys2=i686-w64-mingw32
 ) else (
   set Platform1=x64
@@ -130,6 +131,7 @@ if %Platform%==x86 (
   set Platform3=64
   set Platform4=amd64
   set Platform5=VC-WIN64A
+  set Platform6=win64
   set PlatformMSys2=x86_64-w64-mingw32
 )
 
