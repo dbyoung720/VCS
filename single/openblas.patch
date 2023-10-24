@@ -1,8 +1,8 @@
- CMakeLists.txt | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ CMakeLists.txt | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index cc964b76e..6b862266f 100644
+index 35077f3c2..99eeb4817 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -290,7 +290,7 @@ foreach (OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES})
@@ -14,7 +14,7 @@ index cc964b76e..6b862266f 100644
  
  if (USE_THREAD)
    # Add threading library to linker
-@@ -313,14 +313,14 @@ endif()
+@@ -313,26 +313,26 @@ endif()
  if (NOT NO_CBLAS)
    if (NOT ONLY_CBLAS)
    # Broken without fortran on unix
@@ -28,10 +28,11 @@ index cc964b76e..6b862266f 100644
    # Build test and ctest
 -  add_subdirectory(test)
 +#  add_subdirectory(test)
-  endif() 
+  endif()
    if (BUILD_TESTING)
-     add_subdirectory(lapack-netlib/TESTING)
-@@ -328,7 +328,7 @@ if (NOT NOFORTRAN)
+-    add_subdirectory(lapack-netlib/TESTING)
++#    add_subdirectory(lapack-netlib/TESTING)
+   endif()
  endif()
    if(NOT NO_CBLAS)
     if (NOT ONLY_CBLAS)
@@ -40,3 +41,9 @@ index cc964b76e..6b862266f 100644
     endif()
    endif()
    if (CPP_THREAD_SAFETY_TEST OR CPP_THREAD_SAFETY_GEMV)
+-    add_subdirectory(cpp_thread_test)
++#    add_subdirectory(cpp_thread_test)
+   endif()
+ 
+ set_target_properties(${OpenBLAS_LIBS} PROPERTIES
+ 

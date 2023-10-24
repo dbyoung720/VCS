@@ -7,6 +7,8 @@ set VSInstallSDKX=%3
 set obsSourcePath=%4
 set BuildRootPath=%5
 
+set CurrentCD=%~dp0
+
 if %BuildPlatform%==x86 (
   set ifortpath=intel64_ia32
 ) else (
@@ -14,7 +16,7 @@ if %BuildPlatform%==x86 (
 )
 
 :: …Ë÷√ fortran ±‡“Î∆˜
-set "ONEAPI_ROOT=F:\Green\Language\Intel\oneAPI\2022"
+set "ONEAPI_ROOT=F:\Green\Language\Intel\oneAPI\2023"
 set "Intelifort1=%ONEAPI_ROOT%\compiler\latest\windows\bin\%ifortpath%\ifort.exe"
 set "Intelclang1=%ONEAPI_ROOT%\compiler\latest\windows\bin\%ifortpath%\icl.exe"
 set "Intelifort=%Intelifort1:\=/%"
