@@ -9,16 +9,10 @@ set BuildRootPath=%5
 
 set CurrentCD=%~dp0
 
-if %BuildPlatform%==x86 (
-  set ifortpath=intel64_ia32
-) else (
-  set ifortpath=intel64
-)
-
 :: …Ë÷√ fortran ±‡“Î∆˜
 set "ONEAPI_ROOT=F:\Green\Language\Intel\oneAPI\2023"
-set "Intelifort1=%ONEAPI_ROOT%\compiler\latest\windows\bin\%ifortpath%\ifort.exe"
-set "Intelclang1=%ONEAPI_ROOT%\compiler\latest\windows\bin\%ifortpath%\icl.exe"
+set "Intelifort1=%ONEAPI_ROOT%\compiler\latest\windows\bin\intel64\ifort.exe"
+set "Intelclang1=%ONEAPI_ROOT%\compiler\latest\windows\bin\intel64\icl.exe"
 set "Intelifort=%Intelifort1:\=/%"
 set "Intelclang=%Intelclang1:\=/%"
 
